@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+  state = {
+    fonts: []
+  };
+
+  componentDidMount() {
+    fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCe4LqABmOtcBdPHrn8t58EEeqMb7xKG_E')
+      .then(response => response.json())
+      .then(data => {
+        this.setState({
+          fonts: data.items
+        })
+      });
+  }
+
   render() {
+    console.log(this.state.fonts[0]);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>randoFont</h1>
+        {this.state.fonts.map(font => (<p key={font.family}>{font.family}</p>))}
       </div>
     );
   }
