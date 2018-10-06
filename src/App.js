@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+console.log('API_KEY: ', API_KEY);
+
 class App extends Component {
   state = {
     fonts: []
   };
 
   componentDidMount() {
-    fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCe4LqABmOtcBdPHrn8t58EEeqMb7xKG_E')
+    fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=' + API_KEY)
       .then(response => response.json())
       .then(data => {
+        console.log('data: ', data);
         this.setState({
           fonts: data.items
         })
