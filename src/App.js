@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import WebFont from 'webfontloader';
 
+import Fonts from './components/Fonts';
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
   state = {
     randomFonts: [],
+    sampleSentence: 'Pack my box with five dozen liquor jugs.',
     fontCount: 3
   };
 
@@ -24,6 +27,7 @@ class App extends Component {
         this.setState({
           randomFonts: fontList
         });
+
         WebFont.load({
           google: {
             families: fontList.map(font => font.family)
@@ -39,25 +43,11 @@ class App extends Component {
         <div className="navbar">
           <h1>randoFont</h1>
         </div>
-        <div className="container">
-          {this.state.randomFonts.map(
-            font => (
-              <div key={font.family} className="font-card">
-                <h2>
-                  <a
-                    href={'https://fonts.google.com/specimen/' + font.family}
-                    target="_blank"
-                  >
-                    {font.family}
-                  </a>
-                </h2>
-                <p style={{fontFamily: font.family}}>
-                  Pack my box with five dozen liquor jugs
-                </p>
-              </div>
-            )
-          )}
-        </div>
+        <Fonts
+          randomFonts={this.state.randomFonts}
+          sampleSentence={this.state.sampleSentence}
+          fontCount={this.state.fontCount}
+        />
       </div>
     );
   }
