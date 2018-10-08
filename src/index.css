@@ -5,6 +5,14 @@ body {
   background-color: #eee;
 }
 
+a {
+  color: #000;
+  text-decoration: none;
+}
+a:hover {
+  color: #000;
+}
+
 .navbar {
   border-bottom: 1px solid #ccc;
   padding: 5px 50px;
@@ -15,11 +23,15 @@ body {
 }
 
 .container {
-  padding: 25px 50px;
   background-color: #fff;
 }
 
-p {
+.font-card {
+  padding: 25px 50px;
+  border-bottom: 1px solid #ccc;
+}
+
+.font-card p {
   margin-top: 0;
   font-size: 50px;
   line-height: 50px;

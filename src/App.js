@@ -42,8 +42,15 @@ class App extends Component {
         <div className="container">
           {this.state.randomFonts.map(
             font => (
-              <div key={font.family}>
-                <h2>{font.family}</h2>
+              <div key={font.family} className="font-card">
+                <h2>
+                  <a
+                    href={'https://fonts.google.com/specimen/' + font.family}
+                    target="_blank"
+                  >
+                    {font.family}
+                  </a>
+                </h2>
                 <p style={{fontFamily: font.family}}>
                   Pack my box with five dozen liquor jugs
                 </p>
