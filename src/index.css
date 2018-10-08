@@ -8,9 +8,13 @@ body {
 a {
   color: #000;
   text-decoration: none;
+  text-shadow: 0 0 0 white;
+  transition: all 1s ease;
 }
+
 a:hover {
-  color: #000;
+  /* color: #b00; */
+  text-shadow: 0 0 20px blue;
 }
 
 .navbar {
@@ -27,12 +31,18 @@ a:hover {
 }
 
 .font-card {
-  padding: 25px 50px;
+  padding: 45px 50px 35px;
   border-bottom: 1px solid #ccc;
 }
 
-.font-card p {
+.sample-sentence {
   margin-top: 0;
   font-size: 50px;
   line-height: 50px;
+  margin-bottom: 0;
+}
+
+.font-info {
+  margin-right: 20px;
+  font-weight: bold;
 }

@@ -5,17 +5,20 @@ export class Font extends Component {
     const { font, sampleSentence } = this.props;
 
     return (
-      <div key={font.family} className="font-card">
-        <h2>
+      <div className="font-card">
+        <p class="sample-sentence" style={{fontFamily: font.family}}>
           <a
             href={'https://fonts.google.com/specimen/' + font.family}
             target="_blank"
+            rel="noopener noreferrer"
           >
-            {font.family}
+            {sampleSentence}
           </a>
-        </h2>
-        <p contentEditable style={{fontFamily: font.family}}>
-          {sampleSentence}
+        </p>
+        <p>
+          font: <span class="font-info">{font.family}</span>
+          category: <span class="font-info">{font.category}</span>
+          variants: <span class="font-info">{font.variants.length}</span>
         </p>
       </div>
       )

@@ -6,7 +6,11 @@ export class Fonts extends Component {
     return (
       <div className="container">
         {this.props.randomFonts.map(
-          font => <Font font={font} sampleSentence={this.props.sampleSentence} />
+          font => (<Font
+            key={font.family}
+            font={font}
+            sampleSentence={this.props.sampleSentence}
+          />)
         )}
       </div>
     )
