@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import WebFont from 'webfontloader';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -15,25 +16,41 @@ class App extends Component {
     fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=' + API_KEY)
       .then(response => response.json())
       .then(data => {
-        let fontCount = [];
+        const fontList = [];
         for (let i = 0; i < this.state.fontCount; i++) {
-          fontCount.push(this.getRandomFont(data.items));
+          fontList.push(this.getRandomFont(data.items));
         }
-        console.log('selected fonts: ', fontCount);
-        console.log(this.state.randomFonts[0]);
-        this.setState({
-          randomFonts: fontCount
-        });
 
+        this.setState({
+          randomFonts: fontList
+        });
+        WebFont.load({
+          google: {
+            families: fontList.map(font => font.family)
+          }
+        });
+        console.log(this.state.randomFonts[0]);
       });
   }
 
   render() {
-
     return (
       <div className="App">
-        <h1>randoFont</h1>
-        {this.state.randomFonts.map(font => (<p key={font.family}>{font.family}</p>))}
+        <div className="navbar">
+          <h1>randoFont</h1>
+        </div>
+        <div className="container">
+          {this.state.randomFonts.map(
+            font => (
+              <div key={font.family}>
+                <h2>{font.family}</h2>
+                <p style={{fontFamily: font.family}}>
+                  Pack my box with five dozen liquor jugs
+                </p>
+              </div>
+            )
+          )}
+        </div>
       </div>
     );
   }
