@@ -17,10 +17,4 @@ export class Fonts extends Component {
   }
 }
 
-export default Fonts
-
-
-
-
-
-
+export default Fonts;

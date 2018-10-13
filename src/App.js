@@ -7,6 +7,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
   state = {
+    allFonts: [],
     randomFonts: [],
     sampleSentence: 'Pack my box with five dozen liquor jugs.',
     fontCount: 3
@@ -19,9 +20,12 @@ class App extends Component {
     fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=' + API_KEY)
       .then(response => response.json())
       .then(data => {
+        this.setState({
+          allFonts: data.items
+        })
         const fontList = [];
         for (let i = 0; i < this.state.fontCount; i++) {
-          fontList.push(this.getRandomFont(data.items));
+          fontList.push(this.getRandomFont(this.state.allFonts));
         }
 
         this.setState({
