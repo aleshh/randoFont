@@ -17,13 +17,34 @@ a:hover {
   text-shadow: 0 0 20px blue;
 }
 
+.float-left {
+  float: left;
+  margin-left: 25px;
+}
+
 .navbar {
   border-bottom: 1px solid #ccc;
   padding: 5px 50px;
-
+  height: 40px;
 }
+
 .navbar h1 {
   margin: 0;
+  margin-right: 25px;
+}
+
+.controls {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.navbar > *, .controls > * {
+  float: left;
+  margin-right: 25px;
+}
+
+.navbar input[type=checkbox] {
+  transform: scale(1.5);
 }
 
 .container {

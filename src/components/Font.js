@@ -6,7 +6,7 @@ export class Font extends Component {
 
     return (
       <div className="font-card">
-        <p class="sample-sentence" style={{fontFamily: font.family}}>
+        <p className="sample-sentence" style={{fontFamily: font.family}}>
           <a
             href={'https://fonts.google.com/specimen/' + font.family}
             target="_blank"
@@ -16,9 +16,9 @@ export class Font extends Component {
           </a>
         </p>
         <p>
-          font: <span class="font-info">{font.family}</span>
-          category: <span class="font-info">{font.category}</span>
-          variants: <span class="font-info">{font.variants.length}</span>
+          font: <span className="font-info">{font.family}</span>
+          category: <span className="font-info">{font.category}</span>
+          variants: <span className="font-info">{font.variants.length}</span>
         </p>
       </div>
       )
