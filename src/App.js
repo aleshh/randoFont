@@ -46,7 +46,7 @@ class App extends Component {
       if (this.state.categoriesWanted.includes(font.category)
           && !fontList.includes(font)) {
         fontList.push(font);
-        console.log(font);
+        // console.log(font);
       }
     }
 
@@ -89,10 +89,15 @@ class App extends Component {
           <h1>randoFont</h1>
           <div className="controls">
             <div>
-              <select id="qty" name="fontCount" onChange={this.changeCount}>
+              <select
+                id="qty"
+                defaultValue="3"
+                name="fontCount"
+                onChange={this.changeCount}
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
-                <option value="3" selected="selected" >3</option>
+                <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="8">8</option>

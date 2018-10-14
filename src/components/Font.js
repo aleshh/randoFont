@@ -6,8 +6,13 @@ export class Font extends Component {
 
     return (
       <div className="font-card">
-        <p className="sample-sentence" style={{fontFamily: font.family}}>
-            {sampleSentence}
+        <p
+          // contentEditable without a React warning in the console
+          ref={function(e){if(e != null) e.contentEditable=true;}}
+          className="sample-sentence"
+          style={{fontFamily: font.family}}
+        >
+          {sampleSentence}
         </p>
         <p>
           font: <span className="font-info">{font.family}</span>

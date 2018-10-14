@@ -2,11 +2,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, sans-serif;
-  background-color: #eee;
+  background-color: rgb(186, 234, 178);
+  /* background-color: #eee; */
 }
 
 a {
-  color: blue;
+  color: rgb(0, 138, 0);
   text-decoration: none;
   font-weight: bold;
 }
@@ -21,9 +22,10 @@ a:hover {
 }
 
 .navbar {
-  border-bottom: 1px solid #ccc;
+  /* border-bottom: 1px solid #ccc; */
   padding: 5px 50px;
-  height: 40px;
+  /* height: 40px; */
+  overflow: auto;
 }
 
 .navbar h1 {
@@ -42,6 +44,7 @@ a:hover {
 .navbar > *, .controls > * {
   float: left;
   margin-right: 25px;
+  margin-bottom: 3px;
 }
 
 .navbar input[type=checkbox] {
@@ -63,7 +66,8 @@ a:hover {
 
 .font-card {
   padding: 45px 50px 35px;
-  border-bottom: 1px solid #ccc;
+  border: 25px solid rgb(186, 234, 178);
+  border-top: none;
 }
 
 .sample-sentence {
