@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     allFonts: [],
     randomFonts: [],
-    categoriesWanted: ['serif', 'sans serif', 'display', 'handwriting', 'monospace'],
+    categoriesWanted: ['serif', 'sans-serif', 'display', 'handwriting', 'monospace'],
     sampleSentence: 'Pack my box with five dozen liquor jugs.',
     fontCount: 3
   };
@@ -40,8 +40,13 @@ class App extends Component {
 
     while (fontList.length < this.state.fontCount) {
       const font = this.getRandomFont(this.state.allFonts);
-      if (this.state.categoriesWanted.includes(font.category)) {
+
+      // add the font if it's the right category and it's not
+      // already in the list
+      if (this.state.categoriesWanted.includes(font.category)
+          && !fontList.includes(font)) {
         fontList.push(font);
+        console.log(font);
       }
     }
 
@@ -53,8 +58,6 @@ class App extends Component {
         families: fontList.map(font => font.family)
       }
     });
-    console.log(this.state.randomFonts[0]);
-    console.log('categoriesWanted: ', this.state.categoriesWanted);
   };
 
   changeStyles = e => {
@@ -66,15 +69,17 @@ class App extends Component {
         categoriesWanted: [...this.state.categoriesWanted, style]
       });
     } else {
-      console.log('style unchecked, removing: ', style );
       const newCategories = this.state.categoriesWanted.filter(c => c !== style);
-      console.log('newCagetories: ', newCategories);
       this.setState({
         categoriesWanted: newCategories
       });
     }
-    console.log('categories wanted: ', this.state.categoriesWanted);
-    console.log('····························································');
+  }
+
+  changeCount = e => {
+    this.setState({
+      fontCount: e.target.value
+    });
   }
 
   render() {
@@ -83,6 +88,17 @@ class App extends Component {
         <div className="navbar">
           <h1>randoFont</h1>
           <div className="controls">
+            <div>
+              <select id="qty" name="fontCount" onChange={this.changeCount}>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected="selected" >3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="8">8</option>
+                <option value="12">12</option>
+              </select> Qty.
+            </div>
             <div>
               <input
                 checked={this.state.categoriesWanted.includes('serif')}
@@ -95,9 +111,9 @@ class App extends Component {
             </div>
             <div>
               <input
-                checked={this.state.categoriesWanted.includes('sans serif')}
+                checked={this.state.categoriesWanted.includes('sans-serif')}
                 className="checkbox"
-                name="sans serif"
+                name="sans-serif"
                 type="checkbox"
                 value="name"
                 onChange={this.changeStyles}
