@@ -9,7 +9,7 @@ class App extends Component {
   state = {
     allFonts: [],
     randomFonts: [],
-    categoriesWanted: ['serif', 'sans-serif', 'display', 'handwriting', 'monospace'],
+    categoriesWanted: ['serif', 'sans serif', 'display', 'handwriting', 'monospace'],
     sampleSentence: 'Pack my box with five dozen liquor jugs.',
     fontCount: 3
   };
@@ -40,13 +40,33 @@ class App extends Component {
     this.setState({
       randomFonts: fontList
     });
-    console.log('state after random fonts set: ', this.state);
     WebFont.load({
       google: {
         families: fontList.map(font => font.family)
       }
     });
     console.log(this.state.randomFonts[0]);
+  };
+
+  changeStyles = e => {
+    // console.log(e.target.name, e.target.checked);
+    const style = e.target.name,
+          checked = e.target.checked;
+    if (checked) {
+      console.log('style checked, adding', style);
+      this.setState({
+        categoriesWanted: [...this.state.categoriesWanted, style]
+      });
+    } else {
+      console.log('style not checked, removing: ', style );
+      const newCategories = this.state.categoriesWanted.filter(c => c !== style);
+      console.log('newCagetories: ', newCategories);
+      this.setState({
+        categoriesWanted: newCategories
+      });
+    }
+    console.log('categories wanted: ', this.state.categoriesWanted);
+    console.log('····························································');
   }
 
   render() {
@@ -56,19 +76,54 @@ class App extends Component {
           <h1>randoFont</h1>
           <div className="controls">
             <div>
-              <input className="checkbox" name="serif" type="checkbox" value="name" />Serif
+              <input
+                checked={this.state.categoriesWanted.includes('serif')}
+                className="checkbox"
+                name="serif"
+                type="checkbox"
+                value="name"
+                onChange={this.changeStyles}
+              /> Serif
             </div>
             <div>
-              <input className="checkbox" name="sans-serif" type="checkbox" value="name" />Sans Serif
+              <input
+                checked={this.state.categoriesWanted.includes('sans serif')}
+                className="checkbox"
+                name="sans serif"
+                type="checkbox"
+                value="name"
+                onChange={this.changeStyles}
+              /> Sans Serif
             </div>
             <div>
-              <input className="checkbox" name="display" type="checkbox" value="name" />Display
+              <input
+                checked={this.state.categoriesWanted.includes('display')}
+                className="checkbox"
+                name="display"
+                type="checkbox"
+                value="name"
+                onChange={this.changeStyles}
+                /> Display
             </div>
             <div>
-              <input className="checkbox" name="handwriting" type="checkbox" value="name" />Handwriting
+              <input
+                checked={this.state.categoriesWanted.includes('handwriting')}
+                className="checkbox"
+                name="handwriting"
+                type="checkbox"
+                value="name"
+                onChange={this.changeStyles}
+              /> Handwriting
             </div>
             <div>
-              <input className="checkbox" name="monospace" type="checkbox" value="name" />Monospace
+              <input
+                checked={this.state.categoriesWanted.includes('monospace')}
+                className="checkbox"
+                name="monospace"
+                type="checkbox"
+                value="name"
+                onChange={this.changeStyles}
+              /> Monospace
             </div>
             <button onClick={this.refreshFonts}>Reload</button>
           </div>

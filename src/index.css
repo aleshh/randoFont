@@ -37,6 +37,9 @@ a:hover {
   margin-top: 10px;
   font-size: 18px;
 }
+.controls button {
+  font-size: 18px;
+}
 
 .navbar > *, .controls > * {
   float: left;
