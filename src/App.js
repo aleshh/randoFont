@@ -30,6 +30,14 @@ class App extends Component {
 
   refreshFonts = () => {
     const fontList = [];
+
+    if (this.state.categoriesWanted.length === 0) {
+      this.setState({
+        randomFonts: []
+      });
+      return null;
+    }
+
     while (fontList.length < this.state.fontCount) {
       const font = this.getRandomFont(this.state.allFonts);
       if (this.state.categoriesWanted.includes(font.category)) {
@@ -46,10 +54,10 @@ class App extends Component {
       }
     });
     console.log(this.state.randomFonts[0]);
+    console.log('categoriesWanted: ', this.state.categoriesWanted);
   };
 
   changeStyles = e => {
-    // console.log(e.target.name, e.target.checked);
     const style = e.target.name,
           checked = e.target.checked;
     if (checked) {
@@ -58,7 +66,7 @@ class App extends Component {
         categoriesWanted: [...this.state.categoriesWanted, style]
       });
     } else {
-      console.log('style not checked, removing: ', style );
+      console.log('style unchecked, removing: ', style );
       const newCategories = this.state.categoriesWanted.filter(c => c !== style);
       console.log('newCagetories: ', newCategories);
       this.setState({
