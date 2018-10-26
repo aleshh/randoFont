@@ -7,3 +7,8 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+it('runs tests', () => {
+  expect(true).toEqual(true);
+})
+
