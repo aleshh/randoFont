@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import WebFont from 'webfontloader';
 
 import Fonts from './components/Fonts';
+import Navbar from './components/Navbar';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
@@ -85,78 +86,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="navbar">
-          <h1>randoFont</h1>
-          <div className="controls">
-            <div>
-              <select
-                id="qty"
-                defaultValue="3"
-                name="fontCount"
-                onChange={this.changeCount}
-              >
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="8">8</option>
-                <option value="12">12</option>
-              </select> Qty.
-            </div>
-            <div>
-              <input
-                checked={this.state.categoriesWanted.includes('serif')}
-                className="checkbox"
-                name="serif"
-                type="checkbox"
-                value="name"
-                onChange={this.changeStyles}
-              /> Serif
-            </div>
-            <div>
-              <input
-                checked={this.state.categoriesWanted.includes('sans-serif')}
-                className="checkbox"
-                name="sans-serif"
-                type="checkbox"
-                value="name"
-                onChange={this.changeStyles}
-              /> Sans Serif
-            </div>
-            <div>
-              <input
-                checked={this.state.categoriesWanted.includes('display')}
-                className="checkbox"
-                name="display"
-                type="checkbox"
-                value="name"
-                onChange={this.changeStyles}
-                /> Display
-            </div>
-            <div>
-              <input
-                checked={this.state.categoriesWanted.includes('handwriting')}
-                className="checkbox"
-                name="handwriting"
-                type="checkbox"
-                value="name"
-                onChange={this.changeStyles}
-              /> Handwriting
-            </div>
-            <div>
-              <input
-                checked={this.state.categoriesWanted.includes('monospace')}
-                className="checkbox"
-                name="monospace"
-                type="checkbox"
-                value="name"
-                onChange={this.changeStyles}
-              /> Monospace
-            </div>
-            <button onClick={this.refreshFonts}>Reload</button>
-          </div>
-        </div>
+        <Navbar
+          state={this.state}
+          changeStyles={this.changeStyles}
+          changeCount={this.changeCount}
+          refreshFonts={this.refreshFonts}
+        />
 
         <Fonts
           randomFonts={this.state.randomFonts}
