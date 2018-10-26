@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Navbar extends Component {
   render() {
@@ -77,6 +78,13 @@ export class Navbar extends Component {
       </div>
     )
   }
+}
+
+Navbar.propTypes = {
+  state: PropTypes.object.isRequired,
+  changeStyles: PropTypes.func.isRequired,
+  changeCount: PropTypes.func.isRequired,
+  refreshFonts: PropTypes.func.isRequired
 }
 
 export default Navbar;
