@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import CheckboxInput from './CheckboxInput'
+
 export class Navbar extends Component {
   render() {
     return (
@@ -23,7 +25,12 @@ export class Navbar extends Component {
               <option value="12">12</option>
             </select> Qty.
           </div>
-          <div>
+          <CheckboxInput
+            name="serif"
+            checked={this.props.state.categoriesWanted.includes('serif')}
+            changeStyles={this.props.changeStyles}
+          />
+          {/* <div>
             <input
               checked={this.props.state.categoriesWanted.includes('serif')}
               className="checkbox"
@@ -32,7 +39,7 @@ export class Navbar extends Component {
               value="name"
               onChange={this.props.changeStyles}
             /> Serif
-          </div>
+          </div> */}
           <div>
             <input
               checked={this.props.state.categoriesWanted.includes('sans-serif')}
