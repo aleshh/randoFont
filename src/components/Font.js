@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types';
 
 export class Font extends Component {
+  static propTypes = {
+    font: PropTypes.object.isRequired,
+    sampleSentence: PropTypes.string.isRequired
+  }
+
   render() {
     const { font, sampleSentence } = this.props;
 
