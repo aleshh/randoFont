@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 export class CheckboxInput extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
+    checked: PropTypes.bool.isRequired,
     changeStyles: PropTypes.func.isRequired
   }
 

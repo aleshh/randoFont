@@ -4,6 +4,13 @@ import PropTypes from 'prop-types';
 import CheckboxInput from './CheckboxInput'
 
 export class Navbar extends Component {
+  static propTypes = {
+    state: PropTypes.object.isRequired,
+    changeStyles: PropTypes.func.isRequired,
+    changeCount: PropTypes.func.isRequired,
+    refreshFonts: PropTypes.func.isRequired
+  }
+
   render() {
     return (
       <div className="navbar">
@@ -30,68 +37,31 @@ export class Navbar extends Component {
             checked={this.props.state.categoriesWanted.includes('serif')}
             changeStyles={this.props.changeStyles}
           />
-          {/* <div>
-            <input
-              checked={this.props.state.categoriesWanted.includes('serif')}
-              className="checkbox"
-              name="serif"
-              type="checkbox"
-              value="name"
-              onChange={this.props.changeStyles}
-            /> Serif
-          </div> */}
-          <div>
-            <input
-              checked={this.props.state.categoriesWanted.includes('sans-serif')}
-              className="checkbox"
-              name="sans-serif"
-              type="checkbox"
-              value="name"
-              onChange={this.props.changeStyles}
-            /> Sans Serif
-          </div>
-          <div>
-            <input
-              checked={this.props.state.categoriesWanted.includes('display')}
-              className="checkbox"
-              name="display"
-              type="checkbox"
-              value="name"
-              onChange={this.props.changeStyles}
-              /> Display
-          </div>
-          <div>
-            <input
-              checked={this.props.state.categoriesWanted.includes('handwriting')}
-              className="checkbox"
-              name="handwriting"
-              type="checkbox"
-              value="name"
-              onChange={this.props.changeStyles}
-            /> Handwriting
-          </div>
-          <div>
-            <input
-              checked={this.props.state.categoriesWanted.includes('monospace')}
-              className="checkbox"
-              name="monospace"
-              type="checkbox"
-              value="name"
-              onChange={this.props.changeStyles}
-            /> Monospace
-          </div>
+          <CheckboxInput
+            name="sans-serif"
+            checked={this.props.state.categoriesWanted.includes('sans-serif')}
+            changeStyles={this.props.changeStyles}
+          />
+          <CheckboxInput
+            name="display"
+            checked={this.props.state.categoriesWanted.includes('display')}
+            changeStyles={this.props.changeStyles}
+          />
+          <CheckboxInput
+            name="handwriting"
+            checked={this.props.state.categoriesWanted.includes('handwriting')}
+            changeStyles={this.props.changeStyles}
+          />
+          <CheckboxInput
+            name="monospace"
+            checked={this.props.state.categoriesWanted.includes('monospace')}
+            changeStyles={this.props.changeStyles}
+          />
           <button onClick={this.props.refreshFonts}>Reload</button>
         </div>
       </div>
     )
   }
-}
-
-Navbar.propTypes = {
-  state: PropTypes.object.isRequired,
-  changeStyles: PropTypes.func.isRequired,
-  changeCount: PropTypes.func.isRequired,
-  refreshFonts: PropTypes.func.isRequired
 }
 
 export default Navbar;
