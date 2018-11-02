@@ -65,7 +65,6 @@ class App extends Component {
     const style = e.target.name,
           checked = e.target.checked;
     if (checked) {
-      console.log('style checked, adding', style);
       this.setState({
         categoriesWanted: [...this.state.categoriesWanted, style]
       });
