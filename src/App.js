@@ -4,13 +4,18 @@ import WebFont from 'webfontloader';
 import Fonts from './components/Fonts';
 import Navbar from './components/Navbar';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
   state = {
     allFonts: [],
     randomFonts: [],
-    categoriesWanted: ['serif', 'sans-serif', 'display', 'handwriting', 'monospace'],
+    categoriesWanted: [
+      'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
+    ],
     sampleSentence: 'Pack my box with five dozen liquor jugs.',
     fontCount: 3
   };
@@ -84,20 +89,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Navbar
-          state={this.state}
-          changeStyles={this.changeStyles}
-          changeCount={this.changeCount}
-          refreshFonts={this.refreshFonts}
-        />
+      <Provider store={store}>
+        <div className="App">
+          <Navbar
+            state={this.state}
+            changeStyles={this.changeStyles}
+            changeCount={this.changeCount}
+            refreshFonts={this.refreshFonts}
+          />
 
-        <Fonts
-          randomFonts={this.state.randomFonts}
-          sampleSentence={this.state.sampleSentence}
-          fontCount={this.state.fontCount}
-        />
-      </div>
+          <Fonts
+            randomFonts={this.state.randomFonts}
+            sampleSentence={this.state.sampleSentence}
+            fontCount={this.state.fontCount}
+          />
+        </div>
+      </Provider>
     );
   }
 }
