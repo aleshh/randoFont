@@ -1,3 +1,5 @@
+import C from '../actions/types';
+
 const initialState = {
   allFonts: [],
   randomFonts: [],
@@ -10,6 +12,17 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch(action.type) {
+    case C.FETCH_FONTS:
+      return {
+        ...state,
+        allFonts: action.payload
+      };
+    case C.RANDOMIZE_FONTS:
+      return {
+        ...state,
+        randomFonts: action.payload
+      }
+
     default:
       return state;
   }
