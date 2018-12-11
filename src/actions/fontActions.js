@@ -8,7 +8,6 @@ export const fetchFonts = () => dispatch => {
   fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=' + API_KEY)
   .then(response => response.json())
   .then(fonts => {
-    console.log(fonts);
     dispatch({
       type: C.FETCH_FONTS,
       payload: fonts
