@@ -24,16 +24,14 @@ export class Fonts extends Component {
   random = max => Math.floor(Math.random() * max) + 1;
 
   randomizeFonts = () => {
-    console.log('randomizeFonts');
+    // console.log('randomizeFonts');
 
     const { categoriesWanted, fontCount, allFonts } = this.props;
 
-    if (allFonts.length === 0) {
-      console.log('returning!');
-      return;
-    }
-    console.log('allFonts length: ', allFonts.length);
-    console.log('allFonts: ', allFonts);
+    if (allFonts.length === 0) return;
+
+    // console.log('allFonts length: ', allFonts.length);
+    // console.log('allFonts: ', allFonts);
 
     const fontList = [];
 
@@ -54,14 +52,13 @@ export class Fonts extends Component {
       }
     }
 
-    // this.setState({
-    //   randomFonts: fontList
-    // });
     WebFont.load({
       google: {
         families: fontList.map(font => font.family)
       }
     });
+
+    this.props.setRandomFonts(fontList);
   }
 
   render() {
