@@ -1,5 +1,3 @@
-import WebFont from 'webfontloader';
-
 import C from './types';
 
 export const fetchFonts = () => dispatch => {
@@ -10,42 +8,14 @@ export const fetchFonts = () => dispatch => {
   .then(fonts => {
     dispatch({
       type: C.FETCH_FONTS,
-      payload: fonts
+      payload: fonts.items
     })
   });
 }
 
-const getRandomFont = arr => arr[random(arr.length) - 1];
-const random = max => Math.floor(Math.random() * max) + 1;
-
-export const raondomizeFonts = () => dispatch => {
-  const fontList = [];
-
-  if (this.state.categoriesWanted.length === 0) {
-    this.setState({
-      randomFonts: []
-    });
-    return null;
-  }
-
-  while (fontList.length < this.state.fontCount) {
-    const font = getRandomFont(this.state.allFonts);
-
-    // add the font if it's the right category and it's not
-    // already in the list
-    if (this.state.categoriesWanted.includes(font.category)
-        && !fontList.includes(font)) {
-      fontList.push(font);
-      // console.log(font);
-    }
-  }
-
-  this.setState({
-    randomFonts: fontList
-  });
-  WebFont.load({
-    google: {
-      families: fontList.map(font => font.family)
-    }
-  });
+export const setRandomFonts = (randomFonts) => dispatch => {
+  dispatch({
+    type: C.SET_RANDOM_FONTS,
+    payload: randomFonts
+  })
 }

@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
         ...state,
         allFonts: action.payload
       };
-    case C.RANDOMIZE_FONTS:
+    case C.SET_RANDOM_FONTS:
       return {
         ...state,
         randomFonts: action.payload
