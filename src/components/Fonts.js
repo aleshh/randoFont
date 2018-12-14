@@ -16,24 +16,24 @@ export class Fonts extends Component {
     fetchFonts: PropTypes.func.isRequired
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchFonts();
+  }
+
+  componentDidUpdate() {
+    if (this.props.randomFonts.length === 0) {
+      this.randomizeFonts();
+    }
   }
 
   getRandomFont = arr => arr[this.random(arr.length) - 1];
   random = max => Math.floor(Math.random() * max) + 1;
 
   randomizeFonts = () => {
-    // console.log('randomizeFonts');
-
     const { categoriesWanted, fontCount, allFonts } = this.props;
+    const fontList = [];
 
     if (allFonts.length === 0) return;
-
-    // console.log('allFonts length: ', allFonts.length);
-    // console.log('allFonts: ', allFonts);
-
-    const fontList = [];
 
     if (categoriesWanted.length === 0) {
       setRandomFonts();
@@ -42,7 +42,6 @@ export class Fonts extends Component {
 
     while (fontList.length < fontCount) {
       const font = this.getRandomFont(allFonts);
-      console.log('randomFont: ', font);
 
       // add the font if it's the right category and it's not
       // already in the list
@@ -61,10 +60,12 @@ export class Fonts extends Component {
     this.props.setRandomFonts(fontList);
   }
 
+
+
   render() {
-    if (this.props.randomFonts.length === 0) {
-      this.randomizeFonts();
-    }
+    // if (this.props.randomFonts.length === 0) {
+    //   this.randomizeFonts();
+    // }
     return (
       <div className="container">
         {this.props.randomFonts.map(
