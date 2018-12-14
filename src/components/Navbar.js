@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import CheckboxInput from './CheckboxInput'
 
+import { setCategoriesWanted, setFontCount } from '../actions/fontActions';
+
 export class Navbar extends Component {
   static propTypes = {
-    state: PropTypes.object.isRequired,
-    changeStyles: PropTypes.func.isRequired,
-    changeCount: PropTypes.func.isRequired,
-    refreshFonts: PropTypes.func.isRequired
+    setCategoriesWanted: PropTypes.func.isRequired,
+    setFontCount: PropTypes.func.isRequired,
+    // refreshFonts: PropTypes.func.isRequired
   }
 
   render() {
@@ -34,34 +36,41 @@ export class Navbar extends Component {
           </div>
           <CheckboxInput
             name="serif"
-            checked={this.props.state.categoriesWanted.includes('serif')}
+            checked={this.props.categoriesWanted.includes('serif')}
             changeStyles={this.props.changeStyles}
           />
           <CheckboxInput
             name="sans-serif"
-            checked={this.props.state.categoriesWanted.includes('sans-serif')}
+            checked={this.props.categoriesWanted.includes('sans-serif')}
             changeStyles={this.props.changeStyles}
           />
           <CheckboxInput
             name="display"
-            checked={this.props.state.categoriesWanted.includes('display')}
+            checked={this.props.categoriesWanted.includes('display')}
             changeStyles={this.props.changeStyles}
           />
           <CheckboxInput
             name="handwriting"
-            checked={this.props.state.categoriesWanted.includes('handwriting')}
+            checked={this.props.categoriesWanted.includes('handwriting')}
             changeStyles={this.props.changeStyles}
           />
           <CheckboxInput
             name="monospace"
-            checked={this.props.state.categoriesWanted.includes('monospace')}
+            checked={this.props.categoriesWanted.includes('monospace')}
             changeStyles={this.props.changeStyles}
           />
-          <button onClick={this.props.refreshFonts}>Reload</button>
+          {/* <button onClick={this.props.refreshFonts}>Reload</button> */}
         </div>
       </div>
     )
   }
 }
 
-export default Navbar;
+const mapStateToProps = state => ({
+  categoriesWanted: state.fonts.categoriesWanted,
+  fontCount: state.fonts.fontCount
+})
+
+export default connect(
+  mapStateToProps, { setFontCount, setCategoriesWanted }
+)(Navbar);
