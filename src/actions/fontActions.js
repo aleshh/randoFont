@@ -13,9 +13,23 @@ export const fetchFonts = () => dispatch => {
   });
 }
 
-export const setRandomFonts = (randomFonts) => dispatch => {
+export const setRandomFonts = randomFonts => dispatch => {
   dispatch({
     type: C.SET_RANDOM_FONTS,
     payload: randomFonts
+  })
+}
+
+export const setCategoriesWanted = categories => dispatch => {
+  dispatch({
+    type: C.SET_CATEGORIES_WANTED,
+    payload: categories
+  })
+}
+
+export const setFontCount = fontCount => dispatch => {
+  dispatch({
+    type: C.SET_FONT_COUNT,
+    payload: fontCount
   })
 }

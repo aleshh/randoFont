@@ -22,7 +22,16 @@ export default function(state = initialState, action) {
         ...state,
         randomFonts: action.payload
       }
-
+    case C.SET_CATEGORIES_WANTED:
+      return {
+        ...state,
+        categoriesWanted: action.payload
+      }
+    case C.SET_FONT_COUNT:
+      return {
+        ...state,
+        fontCount: action.payload
+      }
     default:
       return state;
   }
