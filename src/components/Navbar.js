@@ -13,6 +13,11 @@ export class Navbar extends Component {
     // refreshFonts: PropTypes.func.isRequired
   }
 
+  componentDidMount() {
+    console.log('this.props.fontCount: ', this.props.fontCount);
+    console.log('this.props.setFontCount: ', this.props.setFontCount);
+  }
+
   render() {
     return (
       <div className="navbar">
@@ -23,7 +28,7 @@ export class Navbar extends Component {
               id="qty"
               defaultValue="3"
               name="fontCount"
-              onChange={this.props.changeCount}
+              onChange={this.props.setFontCount}
             >
               <option value="1">1</option>
               <option value="2">2</option>
@@ -37,27 +42,27 @@ export class Navbar extends Component {
           <CheckboxInput
             name="serif"
             checked={this.props.categoriesWanted.includes('serif')}
-            changeStyles={this.props.changeStyles}
+            changeStyles={this.props.setCategoriesWanted}
           />
           <CheckboxInput
             name="sans-serif"
             checked={this.props.categoriesWanted.includes('sans-serif')}
-            changeStyles={this.props.changeStyles}
+            changeStyles={this.props.setCategoriesWanted}
           />
           <CheckboxInput
             name="display"
             checked={this.props.categoriesWanted.includes('display')}
-            changeStyles={this.props.changeStyles}
+            changeStyles={this.props.setCategoriesWanted}
           />
           <CheckboxInput
             name="handwriting"
             checked={this.props.categoriesWanted.includes('handwriting')}
-            changeStyles={this.props.changeStyles}
+            changeStyles={this.props.setCategoriesWanted}
           />
           <CheckboxInput
             name="monospace"
             checked={this.props.categoriesWanted.includes('monospace')}
-            changeStyles={this.props.changeStyles}
+            changeStyles={this.props.setCategoriesWanted}
           />
           {/* <button onClick={this.props.refreshFonts}>Reload</button> */}
         </div>

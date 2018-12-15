@@ -30,6 +30,6 @@ export const setCategoriesWanted = categories => dispatch => {
 export const setFontCount = fontCount => dispatch => {
   dispatch({
     type: C.SET_FONT_COUNT,
-    payload: fontCount
+    payload: parseInt(fontCount.target.value)
   })
 }
