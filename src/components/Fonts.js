@@ -60,12 +60,7 @@ export class Fonts extends Component {
     this.props.setRandomFonts(fontList);
   }
 
-
-
   render() {
-    // if (this.props.randomFonts.length === 0) {
-    //   this.randomizeFonts();
-    // }
     return (
       <div className="container">
         {this.props.randomFonts.map(
