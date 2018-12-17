@@ -10,12 +10,6 @@ export class Navbar extends Component {
   static propTypes = {
     setCategoriesWanted: PropTypes.func.isRequired,
     setFontCount: PropTypes.func.isRequired,
-    // refreshFonts: PropTypes.func.isRequired
-  }
-
-  componentDidMount() {
-    console.log('this.props.fontCount: ', this.props.fontCount);
-    console.log('this.props.setFontCount: ', this.props.setFontCount);
   }
 
   render() {

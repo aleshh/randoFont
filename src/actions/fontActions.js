@@ -9,7 +9,7 @@ export const fetchFonts = () => dispatch => {
     dispatch({
       type: C.FETCH_FONTS,
       payload: fonts.items
-    })
+    });
   });
 }
 
@@ -17,19 +17,29 @@ export const setRandomFonts = randomFonts => dispatch => {
   dispatch({
     type: C.SET_RANDOM_FONTS,
     payload: randomFonts
-  })
+  });
 }
 
-export const setCategoriesWanted = categories => dispatch => {
-  dispatch({
-    type: C.SET_CATEGORIES_WANTED,
-    payload: categories
-  })
+export const setCategoriesWanted = e => dispatch => {
+    const category = e.target.name,
+          checked = e.target.checked;
+
+    if (checked) {
+      dispatch({
+        type: C.SET_CATEGORY,
+        payload: category
+      });
+    } else {
+      dispatch({
+        type: C.UNSET_CATEGORY,
+        payload: category
+      });
+    }
 }
 
 export const setFontCount = fontCount => dispatch => {
   dispatch({
     type: C.SET_FONT_COUNT,
     payload: parseInt(fontCount.target.value)
-  })
+  });
 }

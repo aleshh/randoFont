@@ -9,27 +9,6 @@ import store from './store';
 
 class App extends Component {
 
-  changeStyles = e => {
-    const style = e.target.name,
-          checked = e.target.checked;
-    if (checked) {
-      this.setState({
-        categoriesWanted: [...this.state.categoriesWanted, style]
-      });
-    } else {
-      const newCategories = this.state.categoriesWanted.filter(c => c !== style);
-      this.setState({
-        categoriesWanted: newCategories
-      });
-    }
-  }
-
-  changeCount = e => {
-    this.setState({
-      fontCount: e.target.value
-    });
-  }
-
   render() {
     return (
       <Provider store={store}>

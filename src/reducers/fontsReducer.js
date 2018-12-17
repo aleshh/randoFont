@@ -22,10 +22,17 @@ export default function(state = initialState, action) {
         ...state,
         randomFonts: action.payload
       }
-    case C.SET_CATEGORIES_WANTED:
+    case C.SET_CATEGORY:
       return {
         ...state,
-        categoriesWanted: action.payload
+        categoriesWanted: [...state.categoriesWanted, action.payload]
+      }
+    case C.UNSET_CATEGORY:
+      return {
+        ...state,
+        categoriesWanted: state.categoriesWanted.filter(
+          cat => cat !== action.payload
+        )
       }
     case C.SET_FONT_COUNT:
       return {
