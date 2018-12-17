@@ -11,9 +11,11 @@ export class Navbar extends Component {
   static propTypes = {
     allFonts: PropTypes.array,
     randomFonts: PropTypes.array.isRequired,
+    categoriesWanted: PropTypes.array.isRequired,
     fetchFonts: PropTypes.func.isRequired,
     setCategoriesWanted: PropTypes.func.isRequired,
-    setFontCount: PropTypes.func.isRequired
+    setFontCount: PropTypes.func.isRequired,
+    setRandomFonts: PropTypes.func.isRequired
   }
 
   componentWillMount() {
@@ -35,10 +37,7 @@ export class Navbar extends Component {
 
     if (allFonts.length === 0) return;
 
-    if (categoriesWanted.length === 0) {
-      // this.props.setRandomFonts();
-      return;
-    }
+    if (categoriesWanted.length === 0) return;
 
     while (fontList.length < fontCount) {
       const font = this.getRandomFont(allFonts);

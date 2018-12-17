@@ -3,15 +3,10 @@ import Font from './Font';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
-
 export class Fonts extends Component {
   static propTypes = {
-    // allFonts: PropTypes.array,
     randomFonts: PropTypes.array.isRequired,
-    sampleSentence: PropTypes.string.isRequired,
-    // categoriesWanted: PropTypes.array.isRequired,
-    // fontCount: PropTypes.number.isRequired,
-    // fetchFonts: PropTypes.func.isRequired
+    sampleSentence: PropTypes.string.isRequired
   }
 
   render() {
@@ -30,11 +25,8 @@ export class Fonts extends Component {
 }
 
 const mapStateToProps = state => ({
-  // allFonts: state.fonts.allFonts,
   randomFonts: state.fonts.randomFonts,
   sampleSentence: state.fonts.sampleSentence,
-  // categoriesWanted: state.fonts.categoriesWanted,
-  // fontCount: state.fonts.fontCount
 });
 
 export default connect(mapStateToProps, {})(Fonts);
