@@ -11,13 +11,9 @@ export class Navbar extends Component {
   static propTypes = {
     allFonts: PropTypes.array,
     randomFonts: PropTypes.array.isRequired,
-    // sampleSentence: PropTypes.string.isRequired,
-    // categoriesWanted: PropTypes.array.isRequired,
-    // fontCount: PropTypes.number.isRequired,
     fetchFonts: PropTypes.func.isRequired,
-
     setCategoriesWanted: PropTypes.func.isRequired,
-    setFontCount: PropTypes.func.isRequired,
+    setFontCount: PropTypes.func.isRequired
   }
 
   componentWillMount() {
@@ -110,7 +106,7 @@ export class Navbar extends Component {
             checked={this.props.categoriesWanted.includes('monospace')}
             changeStyles={this.props.setCategoriesWanted}
           />
-          {/* <button onClick={this.props.refreshFonts}>Reload</button> */}
+          <button onClick={this.randomizeFonts}>Reload</button>
         </div>
       </div>
     )
