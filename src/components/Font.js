@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Font(props) {
   const { font, sampleSentence } = props;
@@ -27,6 +28,11 @@ function Font(props) {
       </p>
     </div>
     )
+}
+
+Font.propTypes = {
+  font: PropTypes.object.isRequired,
+  sampleSentence: PropTypes.string.isRequired
 }
 
 export default Font;
