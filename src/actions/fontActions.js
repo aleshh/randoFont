@@ -43,3 +43,11 @@ export const setFontCount = fontCount => dispatch => {
     payload: parseInt(fontCount.target.value)
   });
 }
+
+export const addFavoriteFont = font => dispatch => {
+  console.log('dispatch: ', dispatch);
+  dispatch({
+    type: C.ADD_FAVORITE_FONT,
+    payload: font
+  });
+}

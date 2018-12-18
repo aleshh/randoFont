@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import Font from './Font';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
+import { addFavoriteFont } from '../actions/fontActions';
 
 class Fonts extends Component {
   static propTypes = {
     randomFonts: PropTypes.array.isRequired,
-    sampleSentence: PropTypes.string.isRequired
+    sampleSentence: PropTypes.string.isRequired,
+    addFavoriteFont: PropTypes.func.isRequired
   }
 
   render() {
@@ -17,6 +19,7 @@ class Fonts extends Component {
             key={font.family}
             font={font}
             sampleSentence={this.props.sampleSentence}
+            addFavoriteFont={this.props.addFavoriteFont}
           />)
         )}
       </div>
@@ -29,4 +32,4 @@ const mapStateToProps = state => ({
   sampleSentence: state.fonts.sampleSentence,
 });
 
-export default connect(mapStateToProps, {})(Fonts);
+export default connect(mapStateToProps, { addFavoriteFont })(Fonts);

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Font(props) {
-  const { font, sampleSentence } = props;
+  const { font, sampleSentence, addFavoriteFont } = props;
 
   return (
     <div className="font-card">
@@ -25,6 +25,10 @@ function Font(props) {
         >
           Link
         </a>
+        &nbsp;&nbsp;˝
+        <span
+          onClick={addFavoriteFont(font)}
+          >Favorite</span>
       </p>
     </div>
     )
@@ -32,7 +36,8 @@ function Font(props) {
 
 Font.propTypes = {
   font: PropTypes.object.isRequired,
-  sampleSentence: PropTypes.string.isRequired
+  sampleSentence: PropTypes.string.isRequired,
+  addFavoriteFont: PropTypes.func.isRequired
 }
 
 export default Font;
