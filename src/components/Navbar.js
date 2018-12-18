@@ -5,7 +5,9 @@ import WebFont from 'webfontloader';
 
 import CheckboxInput from './CheckboxInput';
 
-import { toggleCategoryWanted, setFontCount,  fetchFonts, setRandomFonts } from '../actions/fontActions';
+import {
+  toggleCategoryWanted, setFontCount,  fetchFonts, setRandomFonts
+} from '../actions/fontActions';
 
 class Navbar extends Component {
 
@@ -51,6 +53,10 @@ class Navbar extends Component {
   }
 
   render() {
+    const categories = [
+      'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
+    ];
+
     return (
       <div className="navbar">
         <h1>randoFont</h1>
@@ -71,31 +77,16 @@ class Navbar extends Component {
               <option value="12">12</option>
             </select> Qty.
           </div>
-          <CheckboxInput
-            name="serif"
-            checked={this.props.categoriesWanted.includes('serif')}
-            changeStyles={this.props.toggleCategoryWanted}
-          />
-          <CheckboxInput
-            name="sans-serif"
-            checked={this.props.categoriesWanted.includes('sans-serif')}
-            changeStyles={this.props.toggleCategoryWanted}
-          />
-          <CheckboxInput
-            name="display"
-            checked={this.props.categoriesWanted.includes('display')}
-            changeStyles={this.props.toggleCategoryWanted}
-          />
-          <CheckboxInput
-            name="handwriting"
-            checked={this.props.categoriesWanted.includes('handwriting')}
-            changeStyles={this.props.toggleCategoryWanted}
-          />
-          <CheckboxInput
-            name="monospace"
-            checked={this.props.categoriesWanted.includes('monospace')}
-            changeStyles={this.props.toggleCategoryWanted}
-          />
+          {categories.map(
+            category => (
+              <CheckboxInput
+                key={category}
+                name={category}
+                checked={this.props.categoriesWanted.includes(category)}
+                changeStyles={this.props.toggleCategoryWanted}
+              />
+            )
+          )}
           <button onClick={this.randomizeFonts}>Reload</button>
         </div>
       </div>
