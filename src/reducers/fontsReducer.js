@@ -3,6 +3,7 @@ import C from '../actions/types';
 const initialState = {
   allFonts: [],
   randomFonts: [],
+  favoriteFonts: [],
   categoriesWanted: [
     'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
   ],
@@ -38,6 +39,18 @@ export default function(state = initialState, action) {
       return {
         ...state,
         fontCount: action.payload
+      }
+    case C.ADD_FAVORITE_FONT:
+      return {
+        ...state,
+        favoriteFonts: [action.payload, ...state.favoriteFonts]
+      }
+    case C.REMOVE_FAVORITE_FONT:
+      return {
+        ...state,
+        favoriteFonts: state.favoriteFonts.filter(
+          font => font.id !== action.payload
+        )
       }
     default:
       return state;
