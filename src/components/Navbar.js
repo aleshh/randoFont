@@ -5,7 +5,7 @@ import WebFont from 'webfontloader';
 
 import CheckboxInput from './CheckboxInput';
 
-import { setCategoriesWanted, setFontCount,  fetchFonts, setRandomFonts } from '../actions/fontActions';
+import { toggleCategoryWanted, setFontCount,  fetchFonts, setRandomFonts } from '../actions/fontActions';
 
 export class Navbar extends Component {
   static propTypes = {
@@ -13,7 +13,7 @@ export class Navbar extends Component {
     randomFonts: PropTypes.array.isRequired,
     categoriesWanted: PropTypes.array.isRequired,
     fetchFonts: PropTypes.func.isRequired,
-    setCategoriesWanted: PropTypes.func.isRequired,
+    toggleCategoryWanted: PropTypes.func.isRequired,
     setFontCount: PropTypes.func.isRequired,
     setRandomFonts: PropTypes.func.isRequired
   }
@@ -83,27 +83,27 @@ export class Navbar extends Component {
           <CheckboxInput
             name="serif"
             checked={this.props.categoriesWanted.includes('serif')}
-            changeStyles={this.props.setCategoriesWanted}
+            changeStyles={this.props.toggleCategoryWanted}
           />
           <CheckboxInput
             name="sans-serif"
             checked={this.props.categoriesWanted.includes('sans-serif')}
-            changeStyles={this.props.setCategoriesWanted}
+            changeStyles={this.props.toggleCategoryWanted}
           />
           <CheckboxInput
             name="display"
             checked={this.props.categoriesWanted.includes('display')}
-            changeStyles={this.props.setCategoriesWanted}
+            changeStyles={this.props.toggleCategoryWanted}
           />
           <CheckboxInput
             name="handwriting"
             checked={this.props.categoriesWanted.includes('handwriting')}
-            changeStyles={this.props.setCategoriesWanted}
+            changeStyles={this.props.toggleCategoryWanted}
           />
           <CheckboxInput
             name="monospace"
             checked={this.props.categoriesWanted.includes('monospace')}
-            changeStyles={this.props.setCategoriesWanted}
+            changeStyles={this.props.toggleCategoryWanted}
           />
           <button onClick={this.randomizeFonts}>Reload</button>
         </div>
@@ -120,5 +120,5 @@ const mapStateToProps = state => ({
 })
 
 export default connect(
-  mapStateToProps, { setFontCount, setCategoriesWanted, fetchFonts, setRandomFonts }
+  mapStateToProps, { setFontCount, toggleCategoryWanted, fetchFonts, setRandomFonts }
 )(Navbar);

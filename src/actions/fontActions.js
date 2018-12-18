@@ -20,21 +20,21 @@ export const setRandomFonts = randomFonts => dispatch => {
   });
 }
 
-export const setCategoriesWanted = e => dispatch => {
-    const category = e.target.name,
-          checked = e.target.checked;
+export const toggleCategoryWanted = e => dispatch => {
+  const category = e.target.name,
+        checked = e.target.checked;
 
-    if (checked) {
-      dispatch({
-        type: C.SET_CATEGORY,
-        payload: category
-      });
-    } else {
-      dispatch({
-        type: C.UNSET_CATEGORY,
-        payload: category
-      });
-    }
+  if (checked) {
+    dispatch({
+      type: C.SET_CATEGORY,
+      payload: category
+    });
+  } else {
+    dispatch({
+      type: C.UNSET_CATEGORY,
+      payload: category
+    });
+  }
 }
 
 export const setFontCount = fontCount => dispatch => {
