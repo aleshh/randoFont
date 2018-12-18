@@ -7,16 +7,7 @@ import CheckboxInput from './CheckboxInput';
 
 import { toggleCategoryWanted, setFontCount,  fetchFonts, setRandomFonts } from '../actions/fontActions';
 
-export class Navbar extends Component {
-  static propTypes = {
-    allFonts: PropTypes.array,
-    randomFonts: PropTypes.array.isRequired,
-    categoriesWanted: PropTypes.array.isRequired,
-    fetchFonts: PropTypes.func.isRequired,
-    toggleCategoryWanted: PropTypes.func.isRequired,
-    setFontCount: PropTypes.func.isRequired,
-    setRandomFonts: PropTypes.func.isRequired
-  }
+class Navbar extends Component {
 
   componentWillMount() {
     this.props.fetchFonts();
@@ -112,6 +103,16 @@ export class Navbar extends Component {
   }
 }
 
+Navbar.propTypes = {
+  allFonts: PropTypes.array.isRequired,
+  randomFonts: PropTypes.array.isRequired,
+  categoriesWanted: PropTypes.array.isRequired,
+  fetchFonts: PropTypes.func.isRequired,
+  toggleCategoryWanted: PropTypes.func.isRequired,
+  setFontCount: PropTypes.func.isRequired,
+  setRandomFonts: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   allFonts: state.fonts.allFonts,
   randomFonts: state.fonts.randomFonts,
@@ -120,5 +121,10 @@ const mapStateToProps = state => ({
 })
 
 export default connect(
-  mapStateToProps, { setFontCount, toggleCategoryWanted, fetchFonts, setRandomFonts }
+  mapStateToProps, {
+    setFontCount,
+    toggleCategoryWanted,
+    fetchFonts,
+    setRandomFonts
+  }
 )(Navbar);

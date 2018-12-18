@@ -3,7 +3,7 @@ import Font from './Font';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
-export class Fonts extends Component {
+class Fonts extends Component {
   static propTypes = {
     randomFonts: PropTypes.array.isRequired,
     sampleSentence: PropTypes.string.isRequired
