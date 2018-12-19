@@ -50,3 +50,12 @@ export const addFavoriteFont = font => dispatch => {
     payload: font
   });
 }
+
+export const removeFavoriteFont = font => dispatch => {
+  console.log('removing: ', font.family);
+  dispatch({
+    type: C.REMOVE_FAVORITE_FONT,
+    payload: font.family
+  });
+}
+
