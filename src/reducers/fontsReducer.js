@@ -41,6 +41,16 @@ export default function(state = initialState, action) {
         fontCount: action.payload
       }
     case C.ADD_FAVORITE_FONT:
+
+      // don't want to add duplicate favorites
+      let addFont = true
+      state.favoriteFonts.forEach((font) => {
+        if (font.family === action.payload.family) {
+          addFont = false;
+        }
+      });
+      if (!addFont) return state;
+
       return {
         ...state,
         favoriteFonts: [action.payload, ...state.favoriteFonts]
