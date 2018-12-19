@@ -46,7 +46,6 @@ export default function(state = initialState, action) {
         favoriteFonts: [action.payload, ...state.favoriteFonts]
       }
     case C.REMOVE_FAVORITE_FONT:
-    console.log('REMOVE_FAVORITE_FONT: ', action.payload);
       return {
         ...state,
         favoriteFonts: state.favoriteFonts.filter(

@@ -28,12 +28,7 @@ function Font(props) {
         </a>
         <span
           className="action"
-          onClick={
-            () => {
-              console.log('calling fontAction with: ', font)
-              return fontAction(font)
-            }
-          }
+          onClick={() => fontAction(font)}
           >{fontActionName}</span>
       </p>
     </div>
