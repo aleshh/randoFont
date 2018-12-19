@@ -19,15 +19,16 @@ function Font(props) {
         category: <span className="font-info">{font.category}</span>
         variants: <span className="font-info">{font.variants.length}</span>
         <a
+          className="font-info"
           href={'https://fonts.google.com/specimen/' + font.family}
           target="_blank"
           rel="noopener noreferrer"
         >
           Link
         </a>
-        &nbsp;&nbsp;˝
         <span
-          onClick={addFavoriteFont(font)}
+          className="action"
+          onClick={() => addFavoriteFont(font)}
           >Favorite</span>
       </p>
     </div>
