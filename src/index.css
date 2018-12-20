@@ -26,6 +26,20 @@ a:hover {
   border-bottom: 1px solid green;
 }
 
+.navbar-link {
+  position: absolute;
+  /* right: 25px; */
+  top: 16px;
+}
+
+.navbar > * {
+  display: inline-block;
+}
+
+.navbar a {
+  color: black;
+}
+
 .navbar h1 {
   margin: 0;
   margin-right: 25px;
@@ -37,6 +51,7 @@ a:hover {
   border-bottom: 1px solid green;
   margin-top: 10px;
   font-size: 14px;
+  overflow: auto;
 }
 
 .controls button {

@@ -17,17 +17,17 @@ class RandomFonts extends Component {
     return (
       <React.Fragment>
         <Controls/>
-      <div className="container">
-        {this.props.randomFonts.map(
-          font => (<Font
-            key={font.family}
-            font={font}
-            sampleSentence={this.props.sampleSentence}
-            fontAction={this.props.addFavoriteFont}
-            fontActionName="Add to favorites"
-          />)
-        )}
-      </div>
+        <div className="container">
+          {this.props.randomFonts.map(
+            font => (<Font
+              key={font.family}
+              font={font}
+              sampleSentence={this.props.sampleSentence}
+              fontAction={this.props.addFavoriteFont}
+              fontActionName="Add to favorites"
+            />)
+          )}
+        </div>
       </React.Fragment>
     )
   }

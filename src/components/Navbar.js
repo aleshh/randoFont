@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <div className="navbar">
-      <h1>randoFont</h1>
+      <Link to="/"><h1>randoFont</h1></Link>
+      <Link to="/favorites" className="navbar-link">Favorites</Link>
     </div>
   )
 }
