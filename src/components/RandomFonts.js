@@ -11,10 +11,6 @@ class RandomFonts extends Component {
     addFavoriteFont: PropTypes.func.isRequired
   }
 
-  componentDidMount() {
-    console.log('componentdidmount: ', store.fonts.getState());
-  }
-
   render() {
     return (
       <div className="container">
