@@ -23,7 +23,7 @@ a:hover {
 
 .navbar {
   padding: 5px 25px;
-  overflow: auto;
+  border-bottom: 1px solid green;
 }
 
 .navbar h1 {
@@ -32,14 +32,18 @@ a:hover {
 }
 
 .controls {
+  min-height: 32px;
+  padding: 0 25px;
+  border-bottom: 1px solid green;
   margin-top: 10px;
   font-size: 14px;
 }
+
 .controls button {
   font-size: 14px;
 }
 
-.navbar > *, .controls > * {
+.controls > * {
   float: left;
   margin-right: 15px;
   margin-bottom: 3px;
@@ -62,6 +66,7 @@ a:hover {
 
 .container {
   background-color: #fff;
+  margin-top: 25px;
 }
 
 .font-card {
