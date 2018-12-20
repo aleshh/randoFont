@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import RandomFonts from './components/RandomFonts';
@@ -10,12 +11,15 @@ import store from './store';
 function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <Navbar/>
-        <RandomFonts/>
-        <h3>Favorites</h3>
-        <FavoriteFonts/>
-      </div>
+      <Router>
+        <div className="App">
+          <Navbar/>
+          <Switch>
+            <Route exact path="/" component={RandomFonts} />
+            <Route exact path="/favorites" component={FavoriteFonts} />
+          </Switch>
+        </div>
+      </Router>
     </Provider>
   )
 }
