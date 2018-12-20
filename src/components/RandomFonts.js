@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { addFavoriteFont } from '../actions/fontActions';
 
+import Controls from './Controls';
+
 class RandomFonts extends Component {
   static propTypes = {
     randomFonts: PropTypes.array.isRequired,
@@ -13,6 +15,8 @@ class RandomFonts extends Component {
 
   render() {
     return (
+      <React.Fragment>
+        <Controls/>
       <div className="container">
         {this.props.randomFonts.map(
           font => (<Font
@@ -24,6 +28,7 @@ class RandomFonts extends Component {
           />)
         )}
       </div>
+      </React.Fragment>
     )
   }
 }

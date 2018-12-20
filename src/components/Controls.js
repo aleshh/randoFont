@@ -58,43 +58,40 @@ class Controls extends Component {
     ];
 
     return (
-      <div className="navbar">
-        <h1>randoFont</h1>
-        <div className="controls">
-          <div>
-            <select
-              id="qty"
-              defaultValue="3"
-              name="fontCount"
-              onChange={this.props.setFontCount}
-            >
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="8">8</option>
-              <option value="12">12</option>
-            </select> Qty.
-          </div>
-          {categories.map(
-            category => (
-              <CheckboxInput
-                key={category}
-                name={category}
-                checked={this.props.categoriesWanted.includes(category)}
-                changeStyles={this.props.toggleCategoryWanted}
-              />
-            )
-          )}
-          <button onClick={this.randomizeFonts}>Reload</button>
+      <div className="controls">
+        <div>
+          <select
+            id="qty"
+            defaultValue="3"
+            name="fontCount"
+            onChange={this.props.setFontCount}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="8">8</option>
+            <option value="12">12</option>
+          </select> Qty.
         </div>
+        {categories.map(
+          category => (
+            <CheckboxInput
+              key={category}
+              name={category}
+              checked={this.props.categoriesWanted.includes(category)}
+              changeStyles={this.props.toggleCategoryWanted}
+            />
+          )
+        )}
+        <button onClick={this.randomizeFonts}>Reload</button>
       </div>
     )
   }
 }
 
-Navbar.propTypes = {
+Controls.propTypes = {
   allFonts: PropTypes.array.isRequired,
   randomFonts: PropTypes.array.isRequired,
   categoriesWanted: PropTypes.array.isRequired,
