@@ -6,12 +6,6 @@ import { connect } from 'react-redux'
 import Controls from './Controls';
 
 class RandomFonts extends Component {
-  static propTypes = {
-    randomFonts: PropTypes.array.isRequired,
-    sampleSentence: PropTypes.string.isRequired,
-    addFavoriteFont: PropTypes.func.isRequired
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -28,6 +22,11 @@ class RandomFonts extends Component {
       </React.Fragment>
     )
   }
+}
+
+RandomFonts.propTypes = {
+  randomFonts: PropTypes.array.isRequired,
+  sampleSentence: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => ({
