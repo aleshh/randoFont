@@ -18,7 +18,6 @@ class Controls extends Component {
       //if we're returning from Favorites, refresh random fonts
       this.randomizeFonts();
     }
-
   }
 
   componentDidUpdate() {
@@ -40,10 +39,11 @@ class Controls extends Component {
     while (fontList.length < fontCount) {
       const font = this.getRandomFont(allFonts);
 
-      // add the font if it's the right category and it's not
-      // already in the list
+      // add the font if it's the right category, it's not already in the list,
+      // and it's not already in the favorites list
       if (categoriesWanted.includes(font.category)
-          && !fontList.includes(font)) {
+          && !fontList.includes(font)
+          && !this.props.favoriteFonts.includes(font)) {
         fontList.push(font);
       }
     }
@@ -103,6 +103,7 @@ Controls.propTypes = {
 const mapStateToProps = state => ({
   allFonts: state.fonts.allFonts,
   randomFonts: state.fonts.randomFonts,
+  favoriteFonts: state.fonts.favoriteFonts,
   categoriesWanted: state.fonts.categoriesWanted,
   fontCount: state.fonts.fontCount
 })

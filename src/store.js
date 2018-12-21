@@ -8,8 +8,8 @@ const middleware = [thunk];
 
 const store = createStore(
   rootReducer,
-  (localStorage['redux-store']) ?
-    JSON.parse(localStorage['redux-store']) :
+  // (localStorage['redux-store']) ?
+  //   JSON.parse(localStorage['redux-store']) :
     initialState,
   compose(
     applyMiddleware(...middleware),
