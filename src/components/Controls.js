@@ -12,7 +12,14 @@ import {
 class Controls extends Component {
 
   componentWillMount() {
-    this.props.fetchFonts();
+    if (this.props.allFonts.length === 0) {
+      // on initial app loal
+      this.props.fetchFonts();
+    } else {
+      //if we're returning from Favorites, refresh random fonts
+      this.randomizeFonts();
+    }
+
   }
 
   componentDidUpdate() {

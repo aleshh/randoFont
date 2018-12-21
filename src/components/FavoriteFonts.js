@@ -20,7 +20,6 @@ class Fonts extends Component {
   );
 
   render() {
-    console.log('length:', this.props.favoriteFonts.length);
     return (
       <div className="container">
         {this.props.favoriteFonts.length === 0 ?
