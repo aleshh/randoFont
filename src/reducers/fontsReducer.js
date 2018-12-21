@@ -41,10 +41,7 @@ export default function(state = initialState, action) {
         fontCount: action.payload
       }
     case C.TOGGLE_FAVORITE:
-      const findFont = state.favoriteFonts.find(font =>
-        font.family === action.payload.family
-      );
-      if(findFont) {
+      if(state.favoriteFonts.includes(action.payload)) {
         return {
           ...state,
           favoriteFonts: state.favoriteFonts.filter(
