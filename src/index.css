@@ -108,3 +108,12 @@ a:hover {
   text-align: center;
   margin-top: 40vh;
 }
+
+.heart svg {
+    position: relative;
+    top: 6px;
+    left: 15px;
+    /* fill: green; */
+    stroke: green;
+    stroke-width: 1.5px;
+}

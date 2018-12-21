@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import heart from '../heart.js';
 
 function Font(props) {
   const { font, sampleSentence, fontAction, fontActionName } = props;
 
+  console.log('Font:', heart);
   return (
     <div className="font-card">
       <p
@@ -30,6 +32,9 @@ function Font(props) {
           className="action"
           onClick={() => fontAction(font)}
           >{fontActionName}</span>
+        <span className="heart">
+          {heart}
+        </span>
       </p>
     </div>
     )
