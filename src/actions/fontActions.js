@@ -44,20 +44,6 @@ export const setFontCount = fontCount => dispatch => {
   });
 }
 
-export const addFavoriteFont = font => dispatch => {
-  dispatch({
-    type: C.ADD_FAVORITE_FONT,
-    payload: font
-  });
-}
-
-export const removeFavoriteFont = font => dispatch => {
-  dispatch({
-    type: C.REMOVE_FAVORITE_FONT,
-    payload: font.family
-  });
-}
-
 export const toggleFavorite = font => dispatch => {
   dispatch({
     type: C.TOGGLE_FAVORITE,

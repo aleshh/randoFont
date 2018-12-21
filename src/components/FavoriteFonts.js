@@ -3,15 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { removeFavoriteFont } from '../actions/fontActions';
 import Font from './Font';
 
-class Fonts extends Component {
-  static propTypes = {
-    favoriteFonts: PropTypes.array.isRequired,
-    sampleSentence: PropTypes.string.isRequired,
-    removeFavoriteFont: PropTypes.func.isRequired
-  }
+class FavoriteFonts extends Component {
 
   noFavorites = (
     <div className="no-favorites">
@@ -29,8 +23,6 @@ class Fonts extends Component {
               key={font.family}
               font={font}
               sampleSentence={this.props.sampleSentence}
-              fontAction={this.props.removeFavoriteFont}
-              fontActionName="Remove from favorites"
             />)
         )}
       </div>
@@ -38,9 +30,14 @@ class Fonts extends Component {
   }
 }
 
+FavoriteFonts.propTypes = {
+  favoriteFonts: PropTypes.array.isRequired,
+  sampleSentence: PropTypes.string.isRequired
+}
+
 const mapStateToProps = state => ({
   favoriteFonts: state.fonts.favoriteFonts,
   sampleSentence: state.fonts.sampleSentence,
 });
 
-export default connect(mapStateToProps, { removeFavoriteFont })(Fonts);
+export default connect(mapStateToProps, {})(FavoriteFonts);

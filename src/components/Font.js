@@ -56,8 +56,6 @@ class Font extends Component {
 Font.propTypes = {
   font: PropTypes.object.isRequired,
   sampleSentence: PropTypes.string.isRequired,
-  fontAction: PropTypes.func.isRequired,
-  fontActionName: PropTypes.string.isRequired,
   toggleFavorite: PropTypes.func.isRequired
 }
 
