@@ -3,10 +3,19 @@ import { connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import heart from '../heart.js';
 
+import WebFont from 'webfontloader';
+
+
 class Font extends Component {
 
   render() {
     const { font, sampleSentence, fontAction, fontActionName } = this.props;
+
+    WebFont.load({
+      google: {
+        families: [font.family]
+      }
+    });
 
     return (
       <div className="font-card">

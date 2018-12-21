@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import WebFont from 'webfontloader';
 
 import CheckboxInput from './CheckboxInput';
 
@@ -36,7 +35,6 @@ class Controls extends Component {
     const fontList = [];
 
     if (allFonts.length === 0) return;
-
     if (categoriesWanted.length === 0) return;
 
     while (fontList.length < fontCount) {
@@ -49,12 +47,6 @@ class Controls extends Component {
         fontList.push(font);
       }
     }
-
-    WebFont.load({
-      google: {
-        families: fontList.map(font => font.family)
-      }
-    });
 
     this.props.setRandomFonts(fontList);
   }
