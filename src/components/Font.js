@@ -5,7 +5,6 @@ import heart from '../heart.js';
 function Font(props) {
   const { font, sampleSentence, fontAction, fontActionName } = props;
 
-  console.log('Font:', heart);
   return (
     <div className="font-card">
       <p
