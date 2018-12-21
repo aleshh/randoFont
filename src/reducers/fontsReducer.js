@@ -62,6 +62,24 @@ export default function(state = initialState, action) {
           font => font.family !== action.payload
         )
       }
+    case C.TOGGLE_FAVORITE:
+      const findFont = state.favoriteFonts.find(font =>
+        font.family === action.payload.family
+      );
+      console.log('TOGGLE_FAVORITE findFont:', findFont);
+      if(findFont) {
+        return {
+          ...state,
+          favoriteFonts: state.favoriteFonts.filter(
+            font => font.family !== action.payload.family
+          )
+        }
+      } else {
+        return {
+          ...state,
+          favoriteFonts: [action.payload, ...state.favoriteFonts]
+        }
+      }
     default:
       return state;
   }

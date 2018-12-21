@@ -5,6 +5,7 @@ import heart from '../heart.js';
 
 import WebFont from 'webfontloader';
 
+import { toggleFavorite } from '../actions/fontActions';
 
 class Font extends Component {
 
@@ -43,7 +44,7 @@ class Font extends Component {
             className="action"
             onClick={() => fontAction(font)}
             >{fontActionName}</span>
-          <span className="heart">
+          <span className="heart" onClick={() => this.props.toggleFavorite(font)}>
             {heart}
           </span>
         </p>
@@ -56,7 +57,8 @@ Font.propTypes = {
   font: PropTypes.object.isRequired,
   sampleSentence: PropTypes.string.isRequired,
   fontAction: PropTypes.func.isRequired,
-  fontActionName: PropTypes.string.isRequired
+  fontActionName: PropTypes.string.isRequired,
+  toggleFavorite: PropTypes.func.isRequired
 }
 
-export default connect(null, null)(Font);
+export default connect(null, { toggleFavorite })(Font);

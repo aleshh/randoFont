@@ -58,3 +58,9 @@ export const removeFavoriteFont = font => dispatch => {
   });
 }
 
+export const toggleFavorite = font => dispatch => {
+  dispatch({
+    type: C.TOGGLE_FAVORITE,
+    payload: font
+  })
+}
