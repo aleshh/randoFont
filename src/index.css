@@ -27,9 +27,9 @@ a:hover {
 }
 
 .navbar-link {
-  position: absolute;
-  /* right: 25px; */
-  top: 16px;
+  position: relative;
+  top: -5px;
+  margin-right: 25px;
 }
 
 .navbar > * {
@@ -47,7 +47,7 @@ a:hover {
 
 .controls {
   min-height: 32px;
-  padding: 0 25px;
+  padding: 4px 25px 1px;
   border-bottom: 1px solid green;
   margin-top: 10px;
   font-size: 14px;
@@ -100,4 +100,11 @@ a:hover {
 .font-info {
   margin-right: 20px;
   font-weight: bold;
+}
+
+.no-favorites {
+  background-color: rgb(186, 234, 178);
+  font-size: 2em;
+  text-align: center;
+  margin-top: 40vh;
 }
