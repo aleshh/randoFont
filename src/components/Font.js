@@ -1,22 +1,11 @@
 import React, { Component } from 'react';
-import { connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import heart from '../heart.js';
-
-import WebFont from 'webfontloader';
-
-import { toggleFavorite } from '../actions/fontActions';
 
 class Font extends Component {
 
   render() {
-    const { font, sampleSentence, fontAction, fontActionName } = this.props;
-
-    WebFont.load({
-      google: {
-        families: [font.family]
-      }
-    });
+    const { font, sampleSentence, favorite, toggleFavorite } = this.props;
 
     return (
       <div className="font-card">
@@ -40,11 +29,8 @@ class Font extends Component {
           >
             Link
           </a>
-          <span
-            className="action"
-            onClick={() => fontAction(font)}
-            >{fontActionName}</span>
-          <span className="heart" onClick={() => this.props.toggleFavorite(font)}>
+          {favorite ? 'favorite' : 'not favorite'}
+          <span className="heart" onClick={() => toggleFavorite(font)}>
             {heart}
           </span>
         </p>
@@ -56,7 +42,8 @@ class Font extends Component {
 Font.propTypes = {
   font: PropTypes.object.isRequired,
   sampleSentence: PropTypes.string.isRequired,
+  favorite: PropTypes.bool.isRequired,
   toggleFavorite: PropTypes.func.isRequired
 }
 
-export default connect(null, { toggleFavorite })(Font);
+export default Font;

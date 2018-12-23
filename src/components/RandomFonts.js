@@ -1,37 +1,26 @@
-import React, { Component } from 'react';
-import Font from './Font';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
 import Controls from './Controls';
+import FontsList from './FontsList';
 
-class RandomFonts extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Controls/>
-        <div className="container">
-          {this.props.randomFonts.map(
-            font => (<Font
-              key={font.family}
-              font={font}
-              sampleSentence={this.props.sampleSentence}
-            />)
-          )}
-        </div>
-      </React.Fragment>
-    )
-  }
+const RandomFonts = (props) => {
+  const { randomFonts } = props;
+  return (
+    <React.Fragment>
+      <Controls/>
+      <FontsList fonts={randomFonts} />
+    </React.Fragment>
+  )
 }
 
 RandomFonts.propTypes = {
-  randomFonts: PropTypes.array.isRequired,
-  sampleSentence: PropTypes.string.isRequired,
+  randomFonts: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
-  randomFonts: state.fonts.randomFonts,
-  sampleSentence: state.fonts.sampleSentence,
+  randomFonts: state.fonts.randomFonts
 });
 
 export default connect(mapStateToProps, {})(RandomFonts);

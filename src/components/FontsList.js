@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
+import WebFont from 'webfontloader';
 
 import Font from './Font';
 import { toggleFavorite } from '../actions/fontActions';
@@ -8,18 +9,26 @@ import { toggleFavorite } from '../actions/fontActions';
 class FontsList extends Component {
 
   render() {
-    const { fonts, sampleSentence } = this.props;
+    const { fonts, sampleSentence, favoriteFonts } = this.props;
+
+    if(fonts.lenght > 0) {
+      WebFont.load({
+        google: {
+          families: [...fonts.map(font => font.family)]
+        }
+      });
+    }
 
     return (
       <div className="container">
         {fonts.map(
-            font => (<Font
-              key={font.family}
-              font={font}
-              sampleSentence={sampleSentence}
-              favorite={favoriteFonts.includes(font)}
-              togggleFavorite={toggleFavorite}
-            />)
+          font => (<Font
+            key={font.family}
+            font={font}
+            sampleSentence={sampleSentence}
+            favorite={favoriteFonts.includes(font)}
+            toggleFavorite={toggleFavorite}
+          />)
         )}
       </div>
     )
