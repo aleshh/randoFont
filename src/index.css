@@ -110,13 +110,17 @@ a:hover {
 }
 
 .heart svg {
-    position: relative;
-    top: 6px;
-    left: 15px;
-    stroke: green;
-    stroke-width: 1.5px;
+  position: relative;
+  top: 6px;
+  left: 15px;
+  stroke: green;
+  stroke-width: 1.5px;
 }
 
-.favorite svg {
-    fill: green;
+.heart:hover svg {
+  fill: rgba(0, 128, 0, 0.194);
+}
+
+.favorite svg, .favorite:hover svg {
+  fill: green;
 }
