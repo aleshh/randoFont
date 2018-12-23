@@ -113,7 +113,10 @@ a:hover {
     position: relative;
     top: 6px;
     left: 15px;
-    /* fill: green; */
     stroke: green;
     stroke-width: 1.5px;
+}
+
+.favorite svg {
+    fill: green;
 }

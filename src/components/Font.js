@@ -31,9 +31,10 @@ const Font = props => {
         >
           Link
         </a>
-        {favorite ? 'favorite' : 'not favorite'}
-        {/* <span className="heart" onClick={() => toggleFavorite(font)}> */}
-        <span className="heart" onClick={() => toggleFavorite(font)}>
+        <span
+          className={favorite ? 'heart favorite' : 'heart'}
+          onClick={() => toggleFavorite(font)}
+        >
           {heart}
         </span>
       </p>
