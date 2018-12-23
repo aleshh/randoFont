@@ -4,14 +4,13 @@ import { connect } from 'react-redux'
 import WebFont from 'webfontloader';
 
 import Font from './Font';
-import { toggleFavorite } from '../actions/fontActions';
 
 class FontsList extends Component {
 
   render() {
     const { fonts, sampleSentence, favoriteFonts } = this.props;
 
-    if(fonts.lenght > 0) {
+    if(fonts.length > 0) {
       WebFont.load({
         google: {
           families: [...fonts.map(font => font.family)]
@@ -27,7 +26,6 @@ class FontsList extends Component {
             font={font}
             sampleSentence={sampleSentence}
             favorite={favoriteFonts.includes(font)}
-            toggleFavorite={toggleFavorite}
           />)
         )}
       </div>
@@ -46,4 +44,4 @@ const mapStateToProps = state => ({
   sampleSentence: state.fonts.sampleSentence,
 });
 
-export default connect(mapStateToProps, {})(FontsList);
+export default connect(mapStateToProps, null)(FontsList);

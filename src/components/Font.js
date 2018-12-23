@@ -1,42 +1,44 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import heart from '../heart.js';
 
-class Font extends Component {
+import { toggleFavorite } from '../actions/fontActions';
 
-  render() {
-    const { font, sampleSentence, favorite, toggleFavorite } = this.props;
+const Font = props => {
 
-    return (
-      <div className="font-card">
-        <p
-          // contentEditable without a React warning in the console
-          ref={function(e){if(e != null) e.contentEditable=true;}}
-          className="sample-sentence"
-          style={{fontFamily: font.family}}
+  const { font, sampleSentence, favorite, toggleFavorite } = props;
+
+  return (
+    <div className="font-card">
+      <p
+        // contentEditable without a React warning in the console
+        ref={function(e){if(e != null) e.contentEditable=true;}}
+        className="sample-sentence"
+        style={{fontFamily: font.family}}
+      >
+        {sampleSentence}
+      </p>
+      <p>
+        font: <span className="font-info">{font.family}</span>
+        category: <span className="font-info">{font.category}</span>
+        variants: <span className="font-info">{font.variants.length}</span>
+        <a
+          className="font-info"
+          href={'https://fonts.google.com/specimen/' + font.family}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          {sampleSentence}
-        </p>
-        <p>
-          font: <span className="font-info">{font.family}</span>
-          category: <span className="font-info">{font.category}</span>
-          variants: <span className="font-info">{font.variants.length}</span>
-          <a
-            className="font-info"
-            href={'https://fonts.google.com/specimen/' + font.family}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Link
-          </a>
-          {favorite ? 'favorite' : 'not favorite'}
-          <span className="heart" onClick={() => toggleFavorite(font)}>
-            {heart}
-          </span>
-        </p>
-      </div>
-      )
-    }
+          Link
+        </a>
+        {favorite ? 'favorite' : 'not favorite'}
+        {/* <span className="heart" onClick={() => toggleFavorite(font)}> */}
+        <span className="heart" onClick={() => toggleFavorite(font)}>
+          {heart}
+        </span>
+      </p>
+    </div>
+    )
 }
 
 Font.propTypes = {
@@ -46,4 +48,4 @@ Font.propTypes = {
   toggleFavorite: PropTypes.func.isRequired
 }
 
-export default Font;
+export default connect(null, { toggleFavorite })(Font);
