@@ -4,9 +4,7 @@ import { connect } from 'react-redux'
 import WebFont from 'webfontloader';
 
 import { setCurrentlyViewedFonts } from '../actions/fontActions';
-
 import Font from './Font';
-
 
 class FontsList extends Component {
 
