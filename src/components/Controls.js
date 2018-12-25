@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import CheckboxInput from './CheckboxInput';
 
 import {
-  toggleCategoryWanted, setFontCount,  fetchFonts, setRandomFonts
+  toggleCategoryWanted,
+  setFontCount,
+  fetchFonts,
+  setRandomFonts,
+  setCurrentlyViewedFonts
 } from '../actions/fontActions';
 
 class Controls extends Component {
@@ -49,6 +53,7 @@ class Controls extends Component {
     }
 
     this.props.setRandomFonts(fontList);
+    this.props.setCurrentlyViewedFonts(fontList);
   }
 
   render() {
@@ -97,7 +102,8 @@ Controls.propTypes = {
   fetchFonts: PropTypes.func.isRequired,
   toggleCategoryWanted: PropTypes.func.isRequired,
   setFontCount: PropTypes.func.isRequired,
-  setRandomFonts: PropTypes.func.isRequired
+  setRandomFonts: PropTypes.func.isRequired,
+  setCurrentlyViewedFonts: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -114,6 +120,7 @@ export default connect(
     setFontCount,
     toggleCategoryWanted,
     fetchFonts,
-    setRandomFonts
+    setRandomFonts,
+    setCurrentlyViewedFonts
   }
 )(Controls);
