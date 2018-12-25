@@ -4,6 +4,7 @@ const initialState = {
   allFonts: [],
   randomFonts: [],
   favoriteFonts: [],
+  currentlyViewedFonts: [],
   categoriesWanted: [
     'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
   ],
@@ -22,6 +23,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         randomFonts: action.payload
+      }
+    case C.SET_CURRENTLY_VIEWED_FONTS:
+      return {
+        ...state,
+        currentlyViewedFonts: action.payload
       }
     case C.SET_CATEGORY:
       return {

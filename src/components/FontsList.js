@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import WebFont from 'webfontloader';
 
+import { setCurrentlyViewedFonts } from '../actions/fontActions';
+
 import Font from './Font';
 
 class FontsList extends Component {
 
+  componentWillMount() {
+    this.props.setCurrentlyViewedFonts(this.props.fonts);
+  }
+
   render() {
-    const { fonts, sampleSentence, favoriteFonts } = this.props;
+    const { fonts, sampleSentence, favoriteFonts, currentlyViewedFonts } = this.props;
 
     if(fonts.length > 0) {
       WebFont.load({
@@ -41,7 +47,8 @@ FontsList.propTypes = {
 
 const mapStateToProps = state => ({
   favoriteFonts: state.fonts.favoriteFonts,
-  sampleSentence: state.fonts.sampleSentence,
+  currentlyViewedFonts: state.fonts.currentlyViewedFonts,
+  sampleSentence: state.fonts.sampleSentence
 });
 
-export default connect(mapStateToProps, null)(FontsList);
+export default connect(mapStateToProps, { setCurrentlyViewedFonts })(FontsList);

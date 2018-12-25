@@ -109,7 +109,8 @@ const mapStateToProps = state => ({
 })
 
 export default connect(
-  mapStateToProps, {
+  mapStateToProps,
+  {
     setFontCount,
     toggleCategoryWanted,
     fetchFonts,

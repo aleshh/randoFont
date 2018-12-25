@@ -20,6 +20,13 @@ export const setRandomFonts = randomFonts => dispatch => {
   });
 }
 
+export const setCurrentlyViewedFonts = fonts => dispatch => {
+  dispatch({
+    type: C.SET_CURRENTLY_VIEWED_FONTS,
+    payload: fonts
+  })
+}
+
 export const toggleCategoryWanted = e => dispatch => {
   const category = e.target.name,
         checked = e.target.checked;

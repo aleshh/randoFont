@@ -17,6 +17,8 @@ const store = createStore(
   )
 );
 
+// localStorage.removeItem('redux-store');
+
 store.subscribe(() => {
   localStorage['redux-store'] = JSON.stringify(store.getState());
 });
