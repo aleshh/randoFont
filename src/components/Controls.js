@@ -57,6 +57,7 @@ class Controls extends Component {
   }
 
   render() {
+    const { fontCount, categoriesWanted, toggleCategoryWanted, setFontCount } = this.props;
     const categories = [
       'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
     ];
@@ -66,9 +67,9 @@ class Controls extends Component {
         <div>
           <select
             id="qty"
-            defaultValue="3"
+            defaultValue={fontCount}
             name="fontCount"
-            onChange={this.props.setFontCount}
+            onChange={setFontCount}
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -84,8 +85,8 @@ class Controls extends Component {
             <CheckboxInput
               key={category}
               name={category}
-              checked={this.props.categoriesWanted.includes(category)}
-              changeStyles={this.props.toggleCategoryWanted}
+              checked={categoriesWanted.includes(category)}
+              changeStyles={toggleCategoryWanted}
             />
           )
         )}
@@ -98,6 +99,7 @@ class Controls extends Component {
 Controls.propTypes = {
   allFonts: PropTypes.array.isRequired,
   randomFonts: PropTypes.array.isRequired,
+  fontCount: PropTypes.number.isRequired,
   categoriesWanted: PropTypes.array.isRequired,
   fetchFonts: PropTypes.func.isRequired,
   toggleCategoryWanted: PropTypes.func.isRequired,
