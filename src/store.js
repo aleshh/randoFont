@@ -4,7 +4,7 @@ import rootReducer from './reducers';
 
 const initialState = {};
 
-const middleware = [thunk];
+const middleware = applyMiddleware(thunk);
 
 const store = createStore(
   rootReducer,
@@ -12,7 +12,7 @@ const store = createStore(
     JSON.parse(localStorage['redux-store']) :
     initialState,
   compose(
-    applyMiddleware(...middleware),
+    middleware,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 );
