@@ -4,14 +4,24 @@ import { connect } from 'react-redux'
 
 import Controls from './Controls';
 import FontsList from './FontsList';
+import FavoriteFonts from './FavoriteFonts';
 
 const RandomFonts = (props) => {
   const { randomFonts } = props;
+
+  const noFonts = (
+    <div className="no-fonts">
+      <p>Could not load Google Fonts. Try refreshing your browser?</p>
+    </div>
+  );
+
   return (
-    <React.Fragment>
-      <Controls/>
-      <FontsList fonts={randomFonts} />
-    </React.Fragment>
+    randomFonts.length === 0 ?
+      noFonts :
+      <React.Fragment>
+        <Controls/>
+        <FontsList fonts={randomFonts} />
+      </React.Fragment>
   )
 }
 

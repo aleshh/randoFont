@@ -11,7 +11,7 @@ const FavoriteFonts = props => {
   const { favoriteFonts } = props;
 
   const noFavorites = (
-    <div className="no-favorites">
+    <div className="no-fonts">
       <p>There are no favorites. <Link to="/">Add some?</Link></p>
     </div>
   );
