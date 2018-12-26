@@ -21,6 +21,10 @@ a:hover {
   margin-left: 25px;
 }
 
+.wrapper {
+  min-height: calc(100vh - 46px);
+}
+
 .navbar {
   padding: 5px 25px;
   border-bottom: 1px solid green;
@@ -123,4 +127,9 @@ a:hover {
 
 .favorite svg, .favorite:hover svg {
   fill: green;
+}
+
+.credits {
+  margin-bottom: 10px;
+  text-align: center;
 }
