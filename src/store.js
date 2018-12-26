@@ -17,10 +17,10 @@ const store = createStore(
   )
 );
 
-// localStorage.removeItem('redux-store');
-
 store.subscribe(() => {
-  localStorage['redux-store'] = JSON.stringify(store.getState());
+  const fullState = store.getState();
+  const stateWithoutallFonts = {...fullState, allFonts: []}
+  localStorage['redux-store'] = JSON.stringify(stateWithoutallFonts);
 });
 
 export default store;
