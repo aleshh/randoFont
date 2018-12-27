@@ -22,7 +22,7 @@ a:hover {
 }
 
 .wrapper {
-  min-height: calc(100vh - 62px);
+  min-height: calc(100vh - 46px);
   margin-bottom: 0;
 }
 
