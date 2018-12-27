@@ -1,6 +1,6 @@
 {
   "name": "rando-font",
-  "homepage": "https://randofont.alesh.com"
+  "homepage": "https://randofont.alesh.com",
   "jest": {
     "verbose": true
   },
