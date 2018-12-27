@@ -58,8 +58,18 @@ a:hover {
   overflow: auto;
 }
 
-.controls button {
+.controls-quantity {
+  position: relative;
+  top: 0px;
+}
+
+.controls-reload-button {
+  position: relative;
+  top: -2px;
   font-size: 14px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 3px;
 }
 
 .controls > * {

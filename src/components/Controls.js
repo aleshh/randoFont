@@ -67,6 +67,7 @@ class Controls extends Component {
         <div>
           <select
             id="qty"
+            className="controls-quantity"
             defaultValue={fontCount}
             name="fontCount"
             onChange={setFontCount}
@@ -89,7 +90,7 @@ class Controls extends Component {
             />
           )
         )}
-        <button onClick={this.randomizeFonts}>Reload</button>
+        <button className="controls-reload-button" onClick={this.randomizeFonts}>Reload</button>
       </div>
     )
   }
