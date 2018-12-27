@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import WebFont from 'webfontloader';
 
 import { setCurrentlyViewedFonts } from '../actions/fontActions';
@@ -22,6 +23,12 @@ class FontsList extends Component {
 
     const fonts = currentlyViewedFonts;
 
+    const noFavorites = (
+      <div className="no-fonts">
+        <p>There are no favorites. <Link to="/">Add some?</Link></p>
+      </div>
+    );
+
     if(fonts.length > 0) {
       WebFont.load({
         google: {
@@ -32,13 +39,15 @@ class FontsList extends Component {
 
     return (
       <div className="container">
-        {fonts.map(
-          font => (<Font
-            key={font.family}
-            font={font}
-            sampleSentence={sampleSentence}
-            favorite={favoriteFonts.includes(font)}
-          />)
+        {fonts.length === 0 ?
+          noFavorites :
+          fonts.map(
+            font => (<Font
+              key={font.family}
+              font={font}
+              sampleSentence={sampleSentence}
+              favorite={favoriteFonts.includes(font)}
+            />)
         )}
       </div>
     )

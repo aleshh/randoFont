@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 // import { setCurrentlyViewedFonts } from '../actions/fontActions';
 
@@ -10,15 +9,7 @@ import FontsList from './FontsList';
 const FavoriteFonts = props => {
   const { favoriteFonts } = props;
 
-  const noFavorites = (
-    <div className="no-fonts">
-      <p>There are no favorites. <Link to="/">Add some?</Link></p>
-    </div>
-  );
-
   return (
-    favoriteFonts.length === 0 ?
-      noFavorites :
       <FontsList fonts={favoriteFonts} />
   )
 }
