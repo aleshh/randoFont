@@ -30,10 +30,15 @@ a:hover {
   border-bottom: 1px solid green;
 }
 
-.navbar-link {
+.navbar-link-active, .navbar-link {
   position: relative;
   top: -5px;
   margin-right: 25px;
+}
+
+.navbar-link-active {
+  text-decoration: underline;
+  cursor: default;
 }
 
 .navbar > * {

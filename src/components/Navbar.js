@@ -1,14 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Route } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <div className="navbar">
       <h1>randoFont</h1>
-      <Link className="navbar-link" to="/" >Home</Link>
-      <Link className="navbar-link" to="/favorites" >Favorites</Link>
+      <NavbarLink to="/" label="Home" />
+      <NavbarLink to="/favorites" label="Favorites" />
     </div>
   )
 }
+
+const NavbarLink = ({ to, label, ...rest }) => (
+  <Route path= {to} exact children={({ match }) => (
+    <Link
+      className={match ? "navbar-link-active" : "navbar-link"}
+      to={to} >{label}</Link>
+  )} />
+)
 
 export default Navbar;
