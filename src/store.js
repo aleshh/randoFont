@@ -19,7 +19,7 @@ const store = createStore(
 
 store.subscribe(() => {
   const fullState = store.getState();
-  const stateWithoutallFonts = {...fullState, allFonts: []}
+  const stateWithoutallFonts = {...fullState, fonts: { ...fullState.fonts, allFonts: []}};
   localStorage['redux-store'] = JSON.stringify(stateWithoutallFonts);
 });
 

@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import Controls from './Controls';
 import FontsList from './FontsList';
-import FavoriteFonts from './FavoriteFonts';
 
 const RandomFonts = (props) => {
   const { randomFonts } = props;
