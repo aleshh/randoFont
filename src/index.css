@@ -22,7 +22,9 @@ a:hover {
 }
 
 .wrapper {
-  min-height: calc(100vh - 46px);
+  min-height: calc(100vh - 62px);
+  margin-bottom: 0;
+  border-bottom: 1px solid blue;
 }
 
 .navbar {
@@ -126,6 +128,7 @@ a:hover {
   font-size: 2em;
   text-align: center;
   margin-top: 40vh;
+  height: 0;
 }
 
 .heart svg {
@@ -147,4 +150,5 @@ a:hover {
 .credits {
   margin-bottom: 10px;
   text-align: center;
+  border-top: 1px solid red;
 }
