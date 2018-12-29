@@ -15,12 +15,13 @@ const RandomFonts = (props) => {
   );
 
   return (
-    randomFonts.length === 0 ?
-      noFonts :
-      <React.Fragment>
-        <Controls/>
-        <FontsList fonts={randomFonts} />
-      </React.Fragment>
+    <React.Fragment>
+    <Controls/>
+      { randomFonts.length === 0 ?
+          noFonts :
+          <FontsList fonts={randomFonts} />
+      }
+    </React.Fragment>
   )
 }
 
