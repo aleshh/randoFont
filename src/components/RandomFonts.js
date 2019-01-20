@@ -10,7 +10,7 @@ const RandomFonts = (props) => {
 
   const noFonts = (
     <div className="no-fonts">
-      <p>Could not load Google Fonts. Try refreshing your browser?</p>
+      <p>Loading ...</p>
     </div>
   );
 
