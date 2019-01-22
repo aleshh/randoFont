@@ -65,7 +65,6 @@ class Controls extends Component {
 
     const randomFonts = eligibleFonts.splice(-fontQty);
 
-    console.log(randomFonts[0])
     this.props.setRandomFonts(randomFonts);
     this.props.setCurrentlyViewedFonts(randomFonts);
   }
