@@ -1,25 +1,15 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 import NavbarFavCount from './NavbarFavCount';
 
-const Navbar = props => {
-  const { showNavbar } = props;
-
-  const navigation = showNavbar ?
-    <React.Fragment>
-      <NavbarLink to="/" label="Home" />
-      <NavbarLink to="/favorites" label="Favorites" />
-      <NavbarFavCount/>
-    </React.Fragment> :
-    null;
-
+const Navbar = () => {
   return (
     <div className="navbar">
       <h1>randoFont</h1>
-      { navigation }
+      <NavbarLink to="/" label="Home" />
+      <NavbarLink to="/favorites" label="Favorites" />
+      <NavbarFavCount/>
     </div>
   )
 }
@@ -32,12 +22,4 @@ const NavbarLink = ({ to, label, ...rest }) => (
   )} />
 )
 
-Navbar.propTypes = {
-  showNavbar: PropTypes.bool.isRequired
-};
-
-const mapStatetoProps = state => ({
-  showNavbar: (state.fonts.favoriteFonts.length > 0)
-});
-
-export default connect(mapStatetoProps, null)(Navbar);
+export default Navbar;
