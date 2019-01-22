@@ -30,30 +30,41 @@ class Controls extends Component {
     }
   }
 
-  getRandomFont = arr => arr[this.random(arr.length) - 1];
-  random = max => Math.floor(Math.random() * max) + 1;
-
   randomizeFonts = () => {
     const { categoriesWanted, fontCount, allFonts } = this.props;
-    const fontList = [];
+    let eligibleFonts = [];
 
     if (allFonts.length === 0) return;
     if (categoriesWanted.length === 0) return;
 
-    while (fontList.length < fontCount) {
-      const font = this.getRandomFont(allFonts);
-
-      // add the font if it's the right category, it's not already in the list,
-      // and it's not already in the favorites list
-      if (categoriesWanted.includes(font.category)
-          && !fontList.includes(font)
-          && !this.props.favoriteFonts.includes(font)) {
-        fontList.push(font);
+    // Eligibile fonts are those that meet our categories and are not already
+    // favorites
+    allFonts.forEach(font => {
+      if (categoriesWanted.includes(font.category) &&
+          !this.props.favoriteFonts.includes(font)) {
+        eligibleFonts.push(font);
       }
+    });
+
+    const fontQty = (eligibleFonts.length < fontCount) ?
+      eligibleFonts.length :
+      fontCount;
+
+    // Use Fisher–Yates shuffle, but only for as many elements as we need
+    for (let i = eligibleFonts.length;
+         i > (eligibleFonts.length - fontQty);
+         i--) {
+      const r = Math.floor(Math.random() * (eligibleFonts.length - 1));
+      const current = eligibleFonts[i - 1];
+
+      eligibleFonts[i - 1] = eligibleFonts[r];
+      eligibleFonts[r] = current;
     }
 
-    this.props.setRandomFonts(fontList);
-    this.props.setCurrentlyViewedFonts(fontList);
+    const randomFonts = eligibleFonts.splice(-fontQty);
+
+    this.props.setRandomFonts(randomFonts);
+    this.props.setCurrentlyViewedFonts(randomFonts);
   }
 
   render() {
