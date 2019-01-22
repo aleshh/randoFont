@@ -41,7 +41,9 @@ class Controls extends Component {
     // favorites
     allFonts.forEach(font => {
       if (categoriesWanted.includes(font.category) &&
-          !this.props.favoriteFonts.includes(font)) {
+      (font.subsets.includes('latin') ||
+      font.subsets.includes('latin-ext')) &&
+      !this.props.favoriteFonts.includes(font)) {
         eligibleFonts.push(font);
       }
     });
@@ -63,6 +65,7 @@ class Controls extends Component {
 
     const randomFonts = eligibleFonts.splice(-fontQty);
 
+    console.log(randomFonts[0])
     this.props.setRandomFonts(randomFonts);
     this.props.setCurrentlyViewedFonts(randomFonts);
   }
