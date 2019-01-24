@@ -16,6 +16,7 @@ const Font = props => {
         ref={function(e){if(e != null) e.contentEditable=true;}}
         className="sample-sentence"
         style={{fontFamily: font.family}}
+        title="Click to edit this text"
       >
         {sampleSentence}
       </p>
@@ -28,11 +29,13 @@ const Font = props => {
           href={'https://fonts.google.com/specimen/' + font.family}
           target="_blank"
           rel="noopener noreferrer"
+          title="Open in Google Fonts"
         >
           Link
         </a>
         <span
           className={favorite ? 'heart favorite' : 'heart'}
+          title={favorite ? 'Remove from Favorites' : 'Add to Favorites'}
           onClick={() => toggleFavorite(font)}
         >
           {heart}
