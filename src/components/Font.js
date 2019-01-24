@@ -21,9 +21,9 @@ const Font = props => {
         {sampleSentence}
       </p>
       <p>
-        font: <span className="font-info">{font.family}</span>
-        category: <span className="font-info">{font.category}</span>
-        variants: <span className="font-info">{font.variants.length}</span>
+        font:&nbsp;<span className="font-info">{font.family}</span>&#8203;
+        category:&nbsp;<span className="font-info">{font.category}</span>&#8203;
+        variants:&nbsp;<span className="font-info">{font.variants.length}</span>&#8203;
         <a
           className="font-info"
           href={'https://fonts.google.com/specimen/' + font.family}

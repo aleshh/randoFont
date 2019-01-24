@@ -165,3 +165,23 @@ a:hover {
   font-size: 14px;
   text-align: center;
 }
+
+
+@media only screen and (max-width: 400px) {
+  .navbar > h1 {
+    /* font-size: 1.7em; */
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .sample-sentence {
+    font-size: 30px;
+    line-height: 30px;
+  }
+
+  /* line break on small screens so link and heart are together */
+  a.font-info::before {
+    content: ' ';
+    display: block;
+  }
+}
