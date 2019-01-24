@@ -89,6 +89,7 @@ a:hover {
   background-color: #005c00;
   color: rgb(221, 252, 215);
   border-radius: 3px;
+  padding-bottom: 2px;
 }
 
 .controls > * {
