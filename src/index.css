@@ -83,10 +83,11 @@ a:hover {
 
 .controls-reload-button {
   position: relative;
-  top: -2px;
   font-size: 14px;
   background-color: transparent;
-  border: 1px solid black;
+  border: none;
+  background-color: #005c00;
+  color: rgb(221, 252, 215);
   border-radius: 3px;
 }
 
