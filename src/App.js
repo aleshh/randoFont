@@ -17,8 +17,8 @@ function App() {
           <div className="wrapper">
             <Navbar/>
             <Switch>
-              <Route exact path="/" component={RandomFonts} />
               <Route exact path="/favorites" component={FavoriteFonts} />
+              <Route component={RandomFonts} />
             </Switch>
           </div>
           <Footer/>

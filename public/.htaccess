@@ -1,12 +1,10 @@
-# Allows React to work as a homepage web app
 Options -MultiViews
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteRule ^ index.html [QSA,L]
 # Redirect all that don't match / only to /
-RewriteRule ^.+$ / [R=302,NC,L]
+RewriteRule ^.+$ https://randofont.alesh.com/ [R=302,NC,L]
 
-# dreamhost https forward:
-RewriteEngine On
+# dreamhost https forward
 RewriteCond %{SERVER_PORT} 80
 RewriteRule ^(.*)$ https://randofont.alesh.com/ [R=301,L]
