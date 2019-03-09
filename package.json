@@ -1,14 +1,9 @@
 {
   "name": "rando-font",
   "homepage": "https://randofont.alesh.com",
-  "jest": {
-    "verbose": true
-  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "ajv": "^6.5.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.1.1",
@@ -21,8 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test-bak": "react-scripts test",
-    "test": "jest",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -35,13 +29,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/preset-es2015": "^7.0.0-beta.53",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^23.6.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "jest": "^23.6.0",
-    "react-test-renderer": "^16.5.2",
-    "regenerator-runtime": "^0.12.1"
+    "ajv": "^6.10.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.10.0",
+    "jest-enzyme": "^7.0.2"
   }
 }
