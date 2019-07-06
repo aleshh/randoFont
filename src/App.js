@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import CssBaseline from '@material-ui/core/CssBaseline';
+
 import Navbar from './components/Navbar';
 import RandomFonts from './components/RandomFonts';
 import FavoriteFonts from './components/FavoriteFonts';
@@ -14,6 +16,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
+          <CssBaseline />
           <div className="wrapper">
             <Navbar/>
             <Switch>

@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { withStyles } from '@material-ui/styles'
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+
 import CheckboxInput from './CheckboxInput';
 
 import {
@@ -11,6 +15,15 @@ import {
   setRandomFonts,
   setCurrentlyViewedFonts
 } from '../actions/fontActions';
+
+const styles = {
+  root: {
+    marginTop: '64px',
+    // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
+    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2)',
+    borderTop: '1px solid gray',
+  },
+};
 
 class Controls extends Component {
 
@@ -76,35 +89,40 @@ class Controls extends Component {
     ];
 
     return (
-      <div className="controls">
-        <div>
-          <select
-            id="qty"
-            className="controls-quantity"
-            defaultValue={fontCount}
-            name="fontCount"
-            onChange={setFontCount}
-          >
-            <option value="1">1</option>
-            <option value="3">3</option>
-            <option value="6">6</option>
-            <option value="12">12</option>
-            <option value="24">24</option>
-            <option value="48">48</option>
-          </select> Qty.
-        </div>
-        {categories.map(
-          category => (
-            <CheckboxInput
-              key={category}
-              name={category}
-              checked={categoriesWanted.includes(category)}
-              changeStyles={toggleCategoryWanted}
-            />
-          )
-        )}
-        <button className="controls-reload-button" onClick={this.randomizeFonts}>Reload</button>
-      </div>
+      <React.Fragment>
+        <AppBar position="fixed" color="default" className={this.props.classes.root}>
+          <Toolbar>
+            <div>
+              <select
+                id="qty"
+                className="controls-quantity"
+                defaultValue={fontCount}
+                name="fontCount"
+                onChange={setFontCount}
+              >
+                <option value="1">1</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+              </select> Qty.
+            </div>
+            {categories.map(
+              category => (
+                <CheckboxInput
+                  key={category}
+                  name={category}
+                  checked={categoriesWanted.includes(category)}
+                  changeStyles={toggleCategoryWanted}
+                />
+              )
+            )}
+            <button className="controls-reload-button" onClick={this.randomizeFonts}>Reload</button>
+          </Toolbar>
+        </AppBar>
+        <Toolbar></Toolbar>
+      </React.Fragment>
     )
   }
 }
@@ -129,7 +147,7 @@ const mapStateToProps = state => ({
   fontCount: state.fonts.fontCount
 })
 
-export default connect(
+export default withStyles(styles)(connect(
   mapStateToProps,
   {
     setFontCount,
@@ -138,4 +156,4 @@ export default connect(
     setRandomFonts,
     setCurrentlyViewedFonts
   }
-)(Controls);
+)(Controls));
