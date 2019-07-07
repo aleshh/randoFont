@@ -40,7 +40,7 @@ class FontsList extends Component {
     }
 
     return (
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" >
         {fonts.length === 0 ?
           noFavorites :
           fonts.map(

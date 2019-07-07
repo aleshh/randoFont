@@ -90,7 +90,7 @@ class Controls extends Component {
 
     return (
       <React.Fragment>
-        <AppBar position="fixed" color="default" className={this.props.classes.root}>
+        <AppBar position="fixed" color="primary" className={this.props.classes.root}>
           <Toolbar>
             <div>
               <select

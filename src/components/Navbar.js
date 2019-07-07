@@ -12,7 +12,7 @@ import NavbarFavCount from './NavbarFavCount';
 const Navbar = () => {
   return (
     <React.Fragment>
-      <AppBar position="fixed" color="default">
+      <AppBar position="fixed" color="primary">
         <Toolbar>
           <Typography variant="h6" color="inherit">
             randoFont
