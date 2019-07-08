@@ -1,19 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+
 function CheckboxInput(props) {
   const { name, checked, changeStyles } = props;
+
   return (
-    <div>
-      <input
-        checked={checked}
-        className="checkbox"
-        name={name}
-        type="checkbox"
-        value={name}
-        onChange={changeStyles}
-      /> {name}
-    </div>
+    <FormControlLabel style={{ fontSize: '12px'}}
+      control={
+        <Checkbox
+          checked={checked}
+          onChange={changeStyles}
+          name={ name }
+          value={ name }
+          color="secondary"
+        />
+      }
+      label={ name }
+    />
   )
 }
 

@@ -16,6 +16,7 @@ import store from './store';
 const theme = createMuiTheme({
   palette: {
     primary: { main: 'rgba(187, 233, 180, 1)' },
+    secondary: { main: '#0f7e00'},
   },
   typography: {
     fontFamily: [
