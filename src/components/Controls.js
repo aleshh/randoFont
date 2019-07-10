@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { withStyles } from '@material-ui/styles'
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import {
+  AppBar, Toolbar, FormControl, Select, MenuItem, Button
+} from '@material-ui/core';
 
 import CheckboxInput from './CheckboxInput';
 
@@ -19,10 +20,12 @@ import {
 const styles = {
   root: {
     marginTop: '64px',
-    // boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)',
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2)',
     borderTop: '1px solid gray',
   },
+  formElement: {
+    marginRight: 25,
+  }
 };
 
 class Controls extends Component {
@@ -87,27 +90,28 @@ class Controls extends Component {
     const categories = [
       'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
     ];
+    const quantityOptions = [1, 3, 6, 12, 24, 48];
 
     return (
       <React.Fragment>
         <AppBar position="fixed" color="primary" className={this.props.classes.root}>
           <Toolbar>
-            <div>
-              <select
-                id="qty"
-                className="controls-quantity"
-                defaultValue={fontCount}
-                name="fontCount"
+            <FormControl variant="standard" >
+              <Select
+                value={fontCount}
                 onChange={setFontCount}
+                inputProps={{
+                  name: 'quantity',
+                  id: 'font-quantity'
+                }}
               >
-                <option value="1">1</option>
-                <option value="3">3</option>
-                <option value="6">6</option>
-                <option value="12">12</option>
-                <option value="24">24</option>
-                <option value="48">48</option>
-              </select> Qty.
-            </div>
+                { quantityOptions.map(qty => (
+                  <MenuItem value={qty}>{qty}</MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <label className={this.props.classes.formElement} >&nbsp;Qty.</label>
+
             {categories.map(
               category => (
                 <CheckboxInput
@@ -115,10 +119,18 @@ class Controls extends Component {
                   name={category}
                   checked={categoriesWanted.includes(category)}
                   changeStyles={toggleCategoryWanted}
+                  className={this.props.classes.formElement}
                 />
               )
             )}
-            <button className="controls-reload-button" onClick={this.randomizeFonts}>Reload</button>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={this.randomizeFonts}
+            >
+              Reload
+            </Button>
+            {/* <button className="controls-reload-button" >Reload</button> */}
           </Toolbar>
         </AppBar>
         <Toolbar></Toolbar>

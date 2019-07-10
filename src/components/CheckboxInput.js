@@ -5,10 +5,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 function CheckboxInput(props) {
-  const { name, checked, changeStyles } = props;
+  const { name, checked, changeStyles, className } = props;
 
   return (
-    <FormControlLabel style={{ fontSize: '12px'}}
+    <FormControlLabel
+      style={{ fontSize: '12px'}}
+      className={className}
       control={
         <Checkbox
           checked={checked}

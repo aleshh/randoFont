@@ -28,6 +28,7 @@ const Font = props => {
       <CardContent>
         <Typography
           variant="h3"
+          gutterBottom
           style={{fontFamily: font.family}}
           // contentEditable without a React warning in the console
           ref={function(e){if(e != null) e.contentEditable=true;}}

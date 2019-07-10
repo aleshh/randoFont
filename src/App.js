@@ -29,7 +29,6 @@ const theme = createMuiTheme({
 });
 
 function App() {
-  console.log(theme.palette.primary.main)
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
