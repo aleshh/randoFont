@@ -106,7 +106,7 @@ class Controls extends Component {
                 }}
               >
                 { quantityOptions.map(qty => (
-                  <MenuItem value={qty}>{qty}</MenuItem>
+                  <MenuItem key={qty} value={qty}>{qty}</MenuItem>
                 ))}
               </Select>
             </FormControl>

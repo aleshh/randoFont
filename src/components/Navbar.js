@@ -2,11 +2,7 @@ import React from 'react';
 import { Link, Route } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { AppBar, Toolbar, Typography, Tabs, Tab } from '@material-ui/core';
 
 import NavbarFavCount from './NavbarFavCount';
 
@@ -24,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
 
   return (
@@ -34,7 +30,7 @@ const Navbar = () => {
           <Typography variant="h4" color="inherit" className={ classes.title }>
             randoFont
           </Typography>
-          <Tabs>
+          <Tabs value={0}>
             <Tab className={ classes.navLink } label="Home" href="/" />
             <Tab className={ classes.navLink } label="Favorites" href="/favorites" />
             <NavbarFavCount/>
