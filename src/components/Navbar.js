@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Toolbar, Typography, Tabs, Tab } from '@material-ui/core';
@@ -20,7 +19,15 @@ const useStyles = makeStyles({
   },
 });
 
-const Navbar = (props) => {
+const getRouteIndex = () => {
+  switch (window.location.pathname) {
+    case "/": return 0;
+    case "/favorites": return 1;
+    default: return null;
+  }
+}
+
+const Navbar = () => {
   const classes = useStyles();
 
   return (
@@ -30,7 +37,7 @@ const Navbar = (props) => {
           <Typography variant="h4" color="inherit" className={ classes.title }>
             randoFont
           </Typography>
-          <Tabs value={0}>
+          <Tabs value={getRouteIndex()}>
             <Tab className={ classes.navLink } label="Home" href="/" />
             <Tab className={ classes.navLink } label="Favorites" href="/favorites" />
             <NavbarFavCount/>
