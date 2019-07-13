@@ -20,16 +20,9 @@ const useStyles = makeStyles({
   },
 });
 
-const getRouteIndex = route => {
-  switch (route) {
-    case "RandomFonts": return 0;
-    case "FavoriteFonts": return 1;
-    default: return null;
-  }
-}
-
-const Navbar = ({ route }) => {
+const Navbar = (props) => {
   const classes = useStyles();
+
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary">
@@ -37,7 +30,7 @@ const Navbar = ({ route }) => {
           <Typography variant="h4" color="inherit" className={ classes.title }>
             randoFont
           </Typography>
-          <Tabs value={getRouteIndex(route)}>
+          <Tabs value={0}>
             <Tab className={ classes.navLink } label="Home" href="/" />
             <Tab className={ classes.navLink } label="Favorites" href="/favorites" />
             <NavbarFavCount/>

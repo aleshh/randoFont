@@ -5,6 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
+import Navbar from './components/Navbar';
 import RandomFonts from './components/RandomFonts';
 import FavoriteFonts from './components/FavoriteFonts';
 import Footer from './components/Footer';
@@ -35,6 +36,7 @@ function App() {
           <div className="App" style={{ backgroundColor: 'rgba(187, 233, 180, 0.3)' }}>
             <CssBaseline />
             <div className="wrapper">
+              <Navbar/>
               <Switch>
                 <Route exact path="/" component={RandomFonts} />
                 <Route exact path="/favorites" component={FavoriteFonts} />

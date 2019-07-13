@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
-import Navbar from './Navbar';
 import Controls from './Controls';
 import FontsList from './FontsList';
 
@@ -17,8 +16,7 @@ const RandomFonts = (props) => {
 
   return (
     <React.Fragment>
-      <Navbar route="RandomFonts" />
-      <Controls/>
+    <Controls/>
       { randomFonts.length === 0 ?
           noFonts :
           <FontsList fonts={randomFonts} />
