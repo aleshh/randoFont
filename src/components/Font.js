@@ -16,7 +16,19 @@ const useStyles = makeStyles({
   card: {
     margin: '25px',
   },
+  fontDetail: {
+    fontWeight: 'bold',
+  },
+  slash: {
+    color: '#bbb',
+    fontWeight: 'bold',
+  },
 });
+
+const Slash = props => {
+  const classes = useStyles();
+  return <span className={classes.slash}> &nbsp;/&nbsp; </span>
+}
 
 const Font = props => {
   const classes = useStyles();
@@ -35,12 +47,20 @@ const Font = props => {
           {sampleSentence}
         </Typography>
         <Typography>
-          font:&nbsp;<span className="font-info">{font.family}</span>&#8203;
-          category:&nbsp;<span className="font-info">{font.category}</span>&#8203;
-          variants:&nbsp;<span className="font-info">{font.variants.length}</span>&#8203;
+          font:&nbsp;<span className={classes.fontDetail}>{font.family}</span>
+          <Slash />
+          category:&nbsp;<span className={classes.fontDetail}>{font.category}</span>
+          <Slash />
+          variants:&nbsp;<span className={classes.fontDetail}>{font.variants.length}</span>
         </Typography>
       </CardContent>
       <CardActions>
+        <Button
+          onClick={() => toggleFavorite(font)}
+          title={favorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        >
+          { favorite ? <Favorite /> : <FavoriteBorder /> }
+        </Button>
         <Button
           href={'https://fonts.google.com/specimen/' + font.family}
           target="_blank"
@@ -48,12 +68,6 @@ const Font = props => {
           title="Open in Google Fonts"
         >
           <OpenInNew />
-        </Button>
-        <Button
-          onClick={() => toggleFavorite(font)}
-          title={favorite ? 'Remove from Favorites' : 'Add to Favorites'}
-        >
-          { favorite ? <Favorite /> : <FavoriteBorder /> }
         </Button>
       </CardActions>
     </Card>
