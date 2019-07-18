@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import heart from '../heart.js';
 
 import { makeStyles } from '@material-ui/styles';
 import Card from '@material-ui/core/Card';
@@ -9,13 +8,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Favorite, FavoriteBorder, OpenInNew } from '@material-ui/icons'
 
 import { toggleFavorite } from '../actions/fontActions';
 
 const useStyles = makeStyles({
   card: {
     margin: '25px',
-    // maxWidth: '800px',
   },
 });
 
@@ -48,27 +47,18 @@ const Font = props => {
           rel="noopener noreferrer"
           title="Open in Google Fonts"
         >
-          Open
+          <OpenInNew />
         </Button>
-        <Button>Heart</Button>
+        <Button
+          onClick={() => toggleFavorite(font)}
+          title={favorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        >
+          { favorite ? <Favorite /> : <FavoriteBorder />}
+
+        </Button>
       </CardActions>
     </Card>
   )
-
-  return (
-    <div className="font-card">
-
-      <p>
-        <span
-          className={favorite ? 'heart favorite' : 'heart'}
-          title={favorite ? 'Remove from Favorites' : 'Add to Favorites'}
-          onClick={() => toggleFavorite(font)}
-        >
-          {heart}
-        </span>
-      </p>
-    </div>
-    )
 }
 
 Font.propTypes = {
