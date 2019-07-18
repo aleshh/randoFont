@@ -14,6 +14,8 @@ const useStyles = makeStyles({
   },
   navLink: {
     textTransform: 'capitalize',
+    width: 'calc(15vw + 40px)',
+    maxWidth: 200,
     '& span': {
       color: 'black',
     },
@@ -31,6 +33,8 @@ const getRouteIndex = () => {
 const Navbar = () => {
   const classes = useStyles();
 
+  const favText = <span>Favorites <NavbarFavCount/></span>
+
   return (
     <React.Fragment>
       <AppBar position="fixed" color="primary">
@@ -40,8 +44,7 @@ const Navbar = () => {
           </Typography>
           <Tabs value={getRouteIndex()}>
             <Tab className={ classes.navLink } label="Home" href="/" />
-            <Tab className={ classes.navLink } label="Favorites" href="/favorites" />
-            <NavbarFavCount/>
+            <Tab className={ classes.navLink } label={favText} href="/favorites" />
           </Tabs>
         </Toolbar>
       </AppBar>
