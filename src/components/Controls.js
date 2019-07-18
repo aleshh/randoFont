@@ -17,16 +17,40 @@ import {
   setCurrentlyViewedFonts
 } from '../actions/fontActions';
 
-const styles = {
+const styles = theme => ({
   root: {
     marginTop: '64px',
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2)',
     borderTop: '1px solid gray',
+    [theme.breakpoints.down('xs')]: {
+      marginTop: '48px',
+    },
   },
   formElement: {
-    marginRight: 25,
-  }
-};
+    marginRight: 40,
+    [theme.breakpoints.down('sm')]: {
+      marginRight: 10,
+      fontSize: 13,
+      '& .MuiFormControlLabel-label': {
+        fontSize: 13,
+      }
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 9,
+      '& .MuiFormControlLabel-label': {
+        fontSize: 9,
+      }
+    },
+  },
+  qty: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 13,
+      '& .MuiFormControlLabel-label': {
+        fontSize: 13,
+      }
+    },
+  },
+});
 
 class Controls extends Component {
 
@@ -64,9 +88,9 @@ class Controls extends Component {
       }
     });
 
-    const fontQty = (eligibleFonts.length < fontCount) ?
-      eligibleFonts.length :
-      fontCount;
+    const fontQty = (eligibleFonts.length < fontCount)
+      ? eligibleFonts.length
+      : fontCount;
 
     // Use Fisher–Yates shuffle, but only for as many elements as we need
     for (let i = eligibleFonts.length;
@@ -98,6 +122,7 @@ class Controls extends Component {
           <Toolbar>
             <FormControl variant="standard" >
               <Select
+                className={this.props.classes.qty}
                 value={fontCount}
                 onChange={setFontCount}
                 inputProps={{

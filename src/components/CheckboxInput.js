@@ -9,7 +9,7 @@ function CheckboxInput(props) {
 
   return (
     <FormControlLabel
-      style={{ fontSize: '12px'}}
+      style={{ fontSize: 'inherit'}}
       className={className}
       control={
         <Checkbox
