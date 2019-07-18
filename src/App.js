@@ -28,14 +28,19 @@ const theme = createMuiTheme({
   },
 });
 
+const wrapperStyle = {
+  minHeight: 'calc(100vh - 50px)',
+  marginBottom: 0,
+};
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <Router>
-          <div className="App" style={{ backgroundColor: 'rgba(187, 233, 180, 0.3)' }}>
+          <div className="App" >
             <CssBaseline />
-            <div className="wrapper">
+            <div style={wrapperStyle}>
               <Navbar/>
               <Switch>
                 <Route exact path="/" component={RandomFonts} />
