@@ -4,17 +4,18 @@ import PropTypes from 'prop-types'
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-function CheckboxInput(props) {
-  const { name, checked, changeStyles, className } = props;
+function CheckboxInput({ name, checked, invertCategories, toggleCategoryWanted, className }) {
 
   return (
     <FormControlLabel
       style={{ fontSize: 'inherit'}}
       className={className}
+      onDoubleClick={toggleCategoryWanted}
       control={
         <Checkbox
           checked={checked}
-          onChange={changeStyles}
+          onChange={toggleCategoryWanted}
+          onDoubleClick={invertCategories}
           name={ name }
           value={ name }
           color="secondary"
@@ -28,7 +29,8 @@ function CheckboxInput(props) {
 CheckboxInput.propTypes = {
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
-  changeStyles: PropTypes.func.isRequired
+  invertCategories: PropTypes.func.isRequired,
+  toggleCategoryWanted: PropTypes.func.isRequired
 }
 
 export default CheckboxInput;

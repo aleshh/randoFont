@@ -24,7 +24,15 @@ export const setCurrentlyViewedFonts = fonts => dispatch => {
   dispatch({
     type: C.SET_CURRENTLY_VIEWED_FONTS,
     payload: fonts
-  })
+  });
+}
+
+export const invertCategories = e => dispatch => {
+  const fontToIgnore = e.target.name;
+  dispatch({
+    type: C.INVERT_CATEGORIES,
+    payload: fontToIgnore
+  });
 }
 
 export const toggleCategoryWanted = e => dispatch => {
@@ -55,5 +63,5 @@ export const toggleFavorite = font => dispatch => {
   dispatch({
     type: C.TOGGLE_FAVORITE,
     payload: font
-  })
+  });
 }

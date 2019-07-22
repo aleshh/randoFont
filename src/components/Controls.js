@@ -14,7 +14,8 @@ import {
   setFontCount,
   fetchFonts,
   setRandomFonts,
-  setCurrentlyViewedFonts
+  setCurrentlyViewedFonts,
+  invertCategories
 } from '../actions/fontActions';
 
 const styles = theme => ({
@@ -110,7 +111,13 @@ class Controls extends Component {
   }
 
   render() {
-    const { fontCount, categoriesWanted, toggleCategoryWanted, setFontCount } = this.props;
+    const {
+      fontCount,
+      categoriesWanted,
+      toggleCategoryWanted,
+      setFontCount,
+      invertCategories
+    } = this.props;
     const categories = [
       'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
     ];
@@ -135,7 +142,7 @@ class Controls extends Component {
                 ))}
               </Select>
             </FormControl>
-            <label className={this.props.classes.formElement} >&nbsp;Qty.</label>
+            <label className={this.props.classes.formElement}>&nbsp;Qty.</label>
 
             {categories.map(
               category => (
@@ -143,7 +150,8 @@ class Controls extends Component {
                   key={category}
                   name={category}
                   checked={categoriesWanted.includes(category)}
-                  changeStyles={toggleCategoryWanted}
+                  toggleCategoryWanted={toggleCategoryWanted}
+                  invertCategories={invertCategories}
                   className={this.props.classes.formElement}
                 />
               )
@@ -155,7 +163,6 @@ class Controls extends Component {
             >
               Reload
             </Button>
-            {/* <button className="controls-reload-button" >Reload</button> */}
           </Toolbar>
         </AppBar>
         <Toolbar></Toolbar>
@@ -173,7 +180,8 @@ Controls.propTypes = {
   toggleCategoryWanted: PropTypes.func.isRequired,
   setFontCount: PropTypes.func.isRequired,
   setRandomFonts: PropTypes.func.isRequired,
-  setCurrentlyViewedFonts: PropTypes.func.isRequired
+  setCurrentlyViewedFonts: PropTypes.func.isRequired,
+  invertCategories: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -191,6 +199,7 @@ export default withStyles(styles)(connect(
     toggleCategoryWanted,
     fetchFonts,
     setRandomFonts,
-    setCurrentlyViewedFonts
+    setCurrentlyViewedFonts,
+    invertCategories
   }
 )(Controls));

@@ -41,6 +41,13 @@ export default function(state = initialState, action) {
           cat => cat !== action.payload
         )
       }
+    case C.INVERT_CATEGORIES:
+      return {
+        ...state,
+        categoriesWanted: initialState.categoriesWanted.filter(cat => (
+          state.categoriesWanted.indexOf(cat) === -1
+        ))
+      }
     case C.SET_FONT_COUNT:
       return {
         ...state,
