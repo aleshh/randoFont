@@ -15,7 +15,7 @@ function CheckboxInput({ name, checked, invertCategories, toggleCategoryWanted, 
         <Checkbox
           checked={checked}
           onChange={toggleCategoryWanted}
-          onDoubleClick={invertCategories}
+          // onDoubleClick={invertCategories}
           name={ name }
           value={ name }
           color="secondary"

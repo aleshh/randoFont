@@ -30,11 +30,13 @@ export default function(state = initialState, action) {
         currentlyViewedFonts: action.payload
       }
     case C.SET_CATEGORY:
+        console.log('set:', action.payload)
       return {
         ...state,
         categoriesWanted: [...state.categoriesWanted, action.payload]
       }
     case C.UNSET_CATEGORY:
+        console.log('unset:', action.payload)
       return {
         ...state,
         categoriesWanted: state.categoriesWanted.filter(
@@ -42,11 +44,20 @@ export default function(state = initialState, action) {
         )
       }
     case C.INVERT_CATEGORIES:
+      // console.clear()
       return {
         ...state,
-        categoriesWanted: initialState.categoriesWanted.filter(cat => (
-          state.categoriesWanted.indexOf(cat) === -1
-        ))
+        categoriesWanted: initialState.categoriesWanted.filter(cat => {
+          return state.categoriesWanted.indexOf(cat) === -1
+          console.log('cat:', cat + ': ' + !(state.categoriesWanted.indexOf(cat) === -1) )
+          if (action.payload === cat) {
+            console.log('                        match! returning:', !(state.categoriesWanted.indexOf(cat) === -1))
+            return (state.categoriesWanted.indexOf(cat) === -1)
+          } else {
+            console.log('                               returning:', (state.categoriesWanted.indexOf(cat) === -1))
+            return state.categoriesWanted.indexOf(cat) === -1
+          }
+        })
       }
     case C.SET_FONT_COUNT:
       return {
