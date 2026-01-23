@@ -11,7 +11,7 @@ import Font from './Font';
 
 class FontsList extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     // we are using this currentlyViewedFonts, assigned here, instead of using
     // fonts passed from the parent component, so that on the FavoriteFonts
     // screen the user can toggle a font's Favorite status without it

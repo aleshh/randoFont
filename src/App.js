@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 import Navbar from './components/Navbar';
@@ -13,7 +13,7 @@ import Footer from './components/Footer';
 import { Provider } from 'react-redux';
 import store from './store';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: { main: 'rgba(187, 233, 180, 1)' },
     secondary: { main: '#0f7e00'},

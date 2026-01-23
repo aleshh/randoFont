@@ -55,7 +55,7 @@ const styles = theme => ({
 
 class Controls extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.allFonts.length === 0) {
       // on initial app loal
       this.props.fetchFonts();
@@ -75,8 +75,8 @@ class Controls extends Component {
     const { categoriesWanted, fontCount, allFonts } = this.props;
     let eligibleFonts = [];
 
-    if (allFonts.length === 0) return;
-    if (categoriesWanted.length === 0) return;
+    if (!Array.isArray(allFonts) || allFonts.length === 0) return;
+    if (!Array.isArray(categoriesWanted) || categoriesWanted.length === 0) return;
 
     // Eligibile fonts are those that meet our categories and are not already
     // favorites

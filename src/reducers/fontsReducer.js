@@ -1,6 +1,6 @@
 import C from '../actions/types';
 
-const initialState = {
+export const initialFontsState = {
   allFonts: [],
   randomFonts: [],
   favoriteFonts: [],
@@ -12,7 +12,7 @@ const initialState = {
   fontCount: 3
 }
 
-export default function(state = initialState, action) {
+export default function(state = initialFontsState, action) {
   switch(action.type) {
     case C.FETCH_FONTS:
       return {
@@ -47,7 +47,7 @@ export default function(state = initialState, action) {
       // console.clear()
       return {
         ...state,
-        categoriesWanted: initialState.categoriesWanted.filter(cat => {
+        categoriesWanted: initialFontsState.categoriesWanted.filter(cat => {
           return state.categoriesWanted.indexOf(cat) === -1
           console.log('cat:', cat + ': ' + !(state.categoriesWanted.indexOf(cat) === -1) )
           if (action.payload === cat) {

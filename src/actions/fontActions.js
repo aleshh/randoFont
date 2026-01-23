@@ -3,9 +3,26 @@ import C from './types';
 export const fetchFonts = () => dispatch => {
   const API_KEY = process.env.REACT_APP_API_KEY;
 
+  if (!API_KEY) {
+    console.warn('Missing REACT_APP_API_KEY; skipping Google Fonts fetch.');
+    dispatch({
+      type: C.FETCH_FONTS,
+      payload: []
+    });
+    return;
+  }
+
   fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=' + API_KEY)
   .then(response => response.json())
   .then(fonts => {
+    if (!fonts || !Array.isArray(fonts.items)) {
+      console.warn('Google Fonts response missing items.');
+      dispatch({
+        type: C.FETCH_FONTS,
+        payload: []
+      });
+      return;
+    }
     dispatch({
       type: C.FETCH_FONTS,
       payload: fonts.items
