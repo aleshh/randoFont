@@ -11,16 +11,15 @@
     "react-dom": "^16.14.0",
     "react-redux": "^7.2.9",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "webfontloader": "^1.6.28"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "vite"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,6 +31,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "ajv": "^6.12.6"
+    "@vitejs/plugin-react": "^4.4.1",
+    "ajv": "^6.12.6",
+    "vite": "^5.4.14"
   }
 }
