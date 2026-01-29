@@ -9,6 +9,30 @@ import Container from '@material-ui/core/Container';
 import { setCurrentlyViewedFonts } from '../actions/fontActions';
 import Font from './Font';
 
+const getSampleSentence = (subsetWanted, fallbackSentence) => {
+  const subsetSamples = {
+    latin: 'Pack my box with five dozen liquor jugs.',
+    'latin-ext': 'Pchnąć w tę łódź jeża lub ośm skrzyń fig.',
+    vietnamese: 'Chữ Việt: Tôi ăn cơm với cá và uống trà.',
+    cyrillic: 'Съешь же ещё этих мягких французских булок, да выпей чаю.',
+    'cyrillic-ext': 'Любя, съешь щипцы — вздохнёт мэр, — кайф жгуч.',
+    greek: 'Ξεσκεπάζω την ψυχοφθόρα βδελυγμία.',
+    'greek-ext': 'Ξεσκεπάζω την ψυχοφθόρα βδελυγμία.',
+    arabic: 'صِف خَلقَ خَودٍ كَمِثلِ الشَّمسِ إِذ بَزَغَتْ.',
+    hebrew: 'דג סקרן שט בים מאוכזב ולפתע מצא לו חברה.',
+    devanagari: 'यह देवनागरी नमूना वाक्य है।',
+    thai: 'เป็นมนุษย์สุดประเสริฐเลิศคุณค่า',
+    korean: '키스의 고유조건은 입술끼리 만나야 하고 특별한 기술은 필요치 않다.',
+    japanese: 'いろはにほへと ちりぬるを'
+  };
+
+  if (!subsetWanted || subsetWanted === 'any') {
+    return fallbackSentence;
+  }
+
+  return subsetSamples[subsetWanted] || fallbackSentence;
+};
+
 class FontsList extends Component {
 
   componentDidMount() {
@@ -65,7 +89,10 @@ FontsList.propTypes = {
 const mapStateToProps = state => ({
   favoriteFonts: state.fonts.favoriteFonts,
   currentlyViewedFonts: state.fonts.currentlyViewedFonts,
-  sampleSentence: state.fonts.sampleSentence
+  sampleSentence: getSampleSentence(
+    state.fonts.subsetWanted,
+    state.fonts.sampleSentence
+  )
 });
 
 export default connect(mapStateToProps, { setCurrentlyViewedFonts })(FontsList);

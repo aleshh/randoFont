@@ -128,16 +128,6 @@ class Controls extends Component {
 
     const randomFonts = eligibleFonts.splice(-fontQty);
 
-    if (import.meta.env.DEV) {
-      console.log('Randomize fonts', {
-        allFonts: allFonts.length,
-        eligibleFonts: eligibleFonts.length,
-        selected: randomFonts.length,
-        subsetWanted,
-        categoriesWanted,
-        fontCount
-      });
-    }
 
     this.props.setRandomFonts(randomFonts);
     this.props.setCurrentlyViewedFonts(randomFonts);
@@ -159,7 +149,7 @@ class Controls extends Component {
     const quantityOptions = [1, 3, 6, 12, 24, 48];
     const subsetOptions = [
       { label: 'Any', value: 'any' },
-      { label: 'Latin (only)', value: 'latin' },
+      { label: 'Latin', value: 'latin' },
       { label: 'Latin Ext', value: 'latin-ext' },
       { label: 'Cyrillic', value: 'cyrillic' },
       { label: 'Cyrillic Ext', value: 'cyrillic-ext' },

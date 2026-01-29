@@ -31,13 +31,11 @@ export default function(state = initialFontsState, action) {
         currentlyViewedFonts: action.payload
       }
     case C.SET_CATEGORY:
-        console.log('set:', action.payload)
       return {
         ...state,
         categoriesWanted: [...state.categoriesWanted, action.payload]
       }
     case C.UNSET_CATEGORY:
-        console.log('unset:', action.payload)
       return {
         ...state,
         categoriesWanted: state.categoriesWanted.filter(

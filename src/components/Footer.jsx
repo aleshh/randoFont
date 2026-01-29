@@ -11,7 +11,7 @@ const iconStyle = {
 function Footer() {
   return (
     <p style={{ textAlign: 'center', marginTop: -6, marginBottom: 10 }}>
-      Made with <LocalPizza style={ iconStyle } /> by <Link color="secondary" href="https://alesh.com/">Alesh</Link>, 2019. <Link color="secondary" href="https://github.com/aleshh/randoFont">GitHub</Link>.
+      Made with <LocalPizza style={ iconStyle } /> by <Link color="secondary" href="https://alesh.com/">Alesh</Link>, 2019–26. <Link color="secondary" href="https://github.com/aleshh/randoFont">GitHub</Link>.
     </p>
   );
 }

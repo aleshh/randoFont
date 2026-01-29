@@ -23,9 +23,6 @@ export const fetchFonts = () => dispatch => {
       });
       return;
     }
-    if (import.meta.env.DEV) {
-      console.log('Fetched fonts:', fonts.items.length);
-    }
     dispatch({
       type: C.FETCH_FONTS,
       payload: fonts.items
