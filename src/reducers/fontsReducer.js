@@ -8,6 +8,7 @@ export const initialFontsState = {
   categoriesWanted: [
     'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
   ],
+  subsetWanted: 'latin',
   sampleSentence: 'Pack my box with five dozen liquor jugs.',
   fontCount: 3
 }
@@ -49,20 +50,17 @@ export default function(state = initialFontsState, action) {
         ...state,
         categoriesWanted: initialFontsState.categoriesWanted.filter(cat => {
           return state.categoriesWanted.indexOf(cat) === -1
-          console.log('cat:', cat + ': ' + !(state.categoriesWanted.indexOf(cat) === -1) )
-          if (action.payload === cat) {
-            console.log('                        match! returning:', !(state.categoriesWanted.indexOf(cat) === -1))
-            return (state.categoriesWanted.indexOf(cat) === -1)
-          } else {
-            console.log('                               returning:', (state.categoriesWanted.indexOf(cat) === -1))
-            return state.categoriesWanted.indexOf(cat) === -1
-          }
         })
       }
     case C.SET_FONT_COUNT:
       return {
         ...state,
         fontCount: action.payload
+      }
+    case C.SET_SUBSET:
+      return {
+        ...state,
+        subsetWanted: action.payload
       }
     case C.TOGGLE_FAVORITE:
       if(state.favoriteFonts.includes(action.payload)) {

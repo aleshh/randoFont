@@ -4,7 +4,7 @@ export const fetchFonts = () => dispatch => {
   const API_KEY = import.meta.env.VITE_API_KEY;
 
   if (!API_KEY) {
-    console.warn('Missing REACT_APP_API_KEY; skipping Google Fonts fetch.');
+    console.warn('Missing VITE_API_KEY; skipping Google Fonts fetch.');
     dispatch({
       type: C.FETCH_FONTS,
       payload: []
@@ -23,9 +23,19 @@ export const fetchFonts = () => dispatch => {
       });
       return;
     }
+    if (import.meta.env.DEV) {
+      console.log('Fetched fonts:', fonts.items.length);
+    }
     dispatch({
       type: C.FETCH_FONTS,
       payload: fonts.items
+    });
+  })
+  .catch(error => {
+    console.error('Failed to fetch Google Fonts:', error);
+    dispatch({
+      type: C.FETCH_FONTS,
+      payload: []
     });
   });
 }
@@ -73,6 +83,13 @@ export const setFontCount = fontCount => dispatch => {
   dispatch({
     type: C.SET_FONT_COUNT,
     payload: parseInt(fontCount.target.value)
+  });
+}
+
+export const setSubsetWanted = subset => dispatch => {
+  dispatch({
+    type: C.SET_SUBSET,
+    payload: subset.target.value
   });
 }
 
