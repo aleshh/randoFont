@@ -77,9 +77,10 @@ export const toggleCategoryWanted = e => dispatch => {
 }
 
 export const setFontCount = fontCount => dispatch => {
+  const value = fontCount.target.value;
   dispatch({
     type: C.SET_FONT_COUNT,
-    payload: parseInt(fontCount.target.value)
+    payload: value === 'all' ? 'all' : parseInt(value, 10)
   });
 }
 

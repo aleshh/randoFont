@@ -166,7 +166,6 @@ a:hover {
   text-align: center;
 }
 
-
 @media only screen and (max-width: 400px) {
   .navbar > h1 {
     display: block;

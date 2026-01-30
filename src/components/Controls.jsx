@@ -18,6 +18,7 @@ import {
   invertCategories,
   setSubsetWanted
 } from '../actions/fontActions';
+import { getEligibleFonts } from '../utils/fontFilters';
 
 const styles = theme => ({
   root: {
@@ -87,33 +88,17 @@ class Controls extends Component {
       allFonts,
       subsetWanted
     } = this.props;
-    let eligibleFonts = [];
-    const latinSubsets = ['latin', 'latin-ext', 'vietnamese'];
-
-    if (!Array.isArray(allFonts) || allFonts.length === 0) return;
-    if (!Array.isArray(categoriesWanted) || categoriesWanted.length === 0) return;
-
-    // Eligibile fonts are those that meet our categories and are not already
-    // favorites
-    allFonts.forEach(font => {
-      const matchesCategory = categoriesWanted.includes(font.category);
-      const matchesSubset = subsetWanted === 'any'
-        ? true
-        : subsetWanted === 'latin'
-          ? (
-            font.subsets.some(subset => latinSubsets.includes(subset))
-            && font.subsets.every(subset => latinSubsets.includes(subset))
-          )
-          : font.subsets.includes(subsetWanted);
-
-      if (matchesCategory && matchesSubset && !this.props.favoriteFonts.includes(font)) {
-        eligibleFonts.push(font);
-      }
+    const eligibleFonts = getEligibleFonts({
+      allFonts,
+      categoriesWanted,
+      favoriteFonts: this.props.favoriteFonts,
+      subsetWanted
     });
 
-    const fontQty = (eligibleFonts.length < fontCount)
-      ? eligibleFonts.length
-      : fontCount;
+    if (eligibleFonts.length === 0) return;
+
+    const maxCount = fontCount === 'all' ? eligibleFonts.length : fontCount;
+    const fontQty = Math.min(eligibleFonts.length, maxCount);
 
     // Use Fisher–Yates shuffle, but only for as many elements as we need
     for (let i = eligibleFonts.length;
@@ -146,7 +131,15 @@ class Controls extends Component {
     const categories = [
       'serif', 'sans-serif', 'display', 'handwriting', 'monospace'
     ];
-    const quantityOptions = [1, 3, 6, 12, 24, 48];
+    const quantityOptions = [
+      { label: 'All', value: 'all' },
+      { label: '1', value: 1 },
+      { label: '3', value: 3 },
+      { label: '6', value: 6 },
+      { label: '12', value: 12 },
+      { label: '24', value: 24 },
+      { label: '48', value: 48 }
+    ];
     const subsetOptions = [
       { label: 'Any', value: 'any' },
       { label: 'Latin', value: 'latin' },
@@ -178,8 +171,8 @@ class Controls extends Component {
                   id: 'font-quantity'
                 }}
               >
-                { quantityOptions.map(qty => (
-                  <MenuItem key={qty} value={qty}>{qty}</MenuItem>
+                { quantityOptions.map(option => (
+                  <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
                 ))}
               </Select>
             </FormControl>
@@ -232,7 +225,10 @@ class Controls extends Component {
 Controls.propTypes = {
   allFonts: PropTypes.array.isRequired,
   randomFonts: PropTypes.array.isRequired,
-  fontCount: PropTypes.number.isRequired,
+  fontCount: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
   subsetWanted: PropTypes.string.isRequired,
   categoriesWanted: PropTypes.array.isRequired,
   fetchFonts: PropTypes.func.isRequired,

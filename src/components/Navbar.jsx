@@ -9,8 +9,7 @@ const useStyles = makeStyles({
   title: {
     fontWeight: '700',
     position: 'relative',
-    top: '-2px',
-    marginRight: 25,
+    top: '-2px'
   },
   navLink: {
     textTransform: 'capitalize',

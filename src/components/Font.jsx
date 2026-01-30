@@ -14,7 +14,7 @@ import { toggleFavorite } from '../actions/fontActions';
 
 const useStyles = makeStyles({
   card: {
-    margin: '25px',
+    margin: '0 25px 25px',
   },
   fontDetail: {
     fontWeight: 'bold',
