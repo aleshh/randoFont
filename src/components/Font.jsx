@@ -12,9 +12,37 @@ import { Favorite, FavoriteBorder, OpenInNew } from '@material-ui/icons'
 
 import { toggleFavorite } from '../actions/fontActions';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   card: {
     margin: '0 25px 25px',
+    [theme.breakpoints.down('xs')]: {
+      margin: '0 0 18px',
+    },
+  },
+  content: {
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(2),
+      '&:last-child': {
+        paddingBottom: theme.spacing(2),
+      },
+    },
+  },
+  sample: {
+    overflowWrap: 'anywhere',
+    fontSize: '2.7rem',
+    lineHeight: 1.08,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '2.15rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 'clamp(1.85rem, 8.5vw, 2.35rem)',
+    },
+  },
+  details: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.95rem',
+      lineHeight: 1.45,
+    },
   },
   fontDetail: {
     fontWeight: 'bold',
@@ -23,7 +51,7 @@ const useStyles = makeStyles({
     color: '#bbb',
     fontWeight: 'bold',
   },
-});
+}));
 
 const Slash = props => {
   const classes = useStyles();
@@ -36,17 +64,18 @@ const Font = props => {
 
   return (
     <Card className={classes.card}>
-      <CardContent>
+      <CardContent className={classes.content}>
         <Typography
           variant="h3"
           gutterBottom
+          className={classes.sample}
           style={{fontFamily: font.family}}
           // contentEditable without a React warning in the console
           ref={function(e){if(e != null) e.contentEditable=true;}}
         >
           {sampleSentence}
         </Typography>
-        <Typography>
+        <Typography className={classes.details}>
           font:&nbsp;<span className={classes.fontDetail}>{font.family}</span>
           <Slash />
           category:&nbsp;<span className={classes.fontDetail}>{font.category}</span>

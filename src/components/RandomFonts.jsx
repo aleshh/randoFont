@@ -9,14 +9,17 @@ import Controls from './Controls';
 import FontsList from './FontsList';
 import { getEligibleFonts } from '../utils/fontFilters';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   matchCount: {
     margin: '16px 25px 12px',
     fontSize: '0.9rem',
     fontWeight: 600,
-    color: '#333'
+    color: '#333',
+    [theme.breakpoints.down('xs')]: {
+      margin: '14px 16px 10px',
+    },
   }
-});
+}));
 
 const RandomFonts = (props) => {
   const classes = useStyles();

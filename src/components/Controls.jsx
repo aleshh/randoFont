@@ -22,26 +22,51 @@ import { getEligibleFonts } from '../utils/fontFilters';
 
 const styles = theme => ({
   root: {
-    marginTop: '64px',
+    top: 64,
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2)',
     borderTop: '1px solid gray',
     [theme.breakpoints.down('xs')]: {
-      marginTop: '48px',
+      top: 56,
+    },
+  },
+  toolbar: {
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    gap: theme.spacing(0.5, 1.5),
+    minHeight: 56,
+    paddingTop: theme.spacing(0.75),
+    paddingBottom: theme.spacing(0.75),
+    [theme.breakpoints.down('xs')]: {
+      gap: theme.spacing(0.25, 0.75),
+      minHeight: 'auto',
+      paddingLeft: theme.spacing(1),
+      paddingRight: theme.spacing(1),
+    },
+  },
+  selectControl: {
+    minWidth: 58,
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 48,
     },
   },
   formElement: {
-    marginRight: 40,
+    marginRight: 18,
+    whiteSpace: 'nowrap',
     [theme.breakpoints.down('sm')]: {
-      marginRight: 10,
+      marginRight: 8,
       fontSize: 13,
       '& .MuiFormControlLabel-label': {
         fontSize: 13,
       }
     },
     [theme.breakpoints.down('xs')]: {
-      fontSize: 9,
+      fontSize: 12,
+      marginRight: 2,
+      '& .MuiCheckbox-root': {
+        padding: 4,
+      },
       '& .MuiFormControlLabel-label': {
-        fontSize: 9,
+        fontSize: 11,
       }
     },
   },
@@ -51,6 +76,17 @@ const styles = theme => ({
       '& .MuiFormControlLabel-label': {
         fontSize: 13,
       }
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
+  },
+  reloadButton: {
+    marginLeft: 'auto',
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 0,
+      padding: theme.spacing(0.5, 1),
+      fontSize: 11,
     },
   },
 });
@@ -159,9 +195,9 @@ class Controls extends Component {
 
     return (
       <React.Fragment>
-        <AppBar position="fixed" color="primary" className={this.props.classes.root}>
-          <Toolbar>
-            <FormControl variant="standard" >
+        <AppBar position="sticky" color="primary" className={this.props.classes.root}>
+          <Toolbar className={this.props.classes.toolbar}>
+            <FormControl variant="standard" className={this.props.classes.selectControl}>
               <Select
                 className={this.props.classes.qty}
                 value={fontCount}
@@ -178,7 +214,7 @@ class Controls extends Component {
             </FormControl>
             <label className={this.props.classes.formElement}>&nbsp;Qty.</label>
 
-            <FormControl variant="standard" >
+            <FormControl variant="standard" className={this.props.classes.selectControl}>
               <Select
                 className={this.props.classes.qty}
                 value={subsetWanted}
@@ -211,12 +247,12 @@ class Controls extends Component {
               variant="contained"
               color="secondary"
               onClick={this.randomizeFonts}
+              className={this.props.classes.reloadButton}
             >
               Reload
             </Button>
           </Toolbar>
         </AppBar>
-        <Toolbar></Toolbar>
       </React.Fragment>
     )
   }
