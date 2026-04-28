@@ -3,6 +3,8 @@ import C from '../actions/types';
 export const initialFontsState = {
   allFonts: [],
   randomFonts: [],
+  randomFontPoolKey: '',
+  remainingRandomFontFamilies: [],
   favoriteFonts: [],
   currentlyViewedFonts: [],
   categoriesWanted: [
@@ -24,6 +26,12 @@ export default function(state = initialFontsState, action) {
       return {
         ...state,
         randomFonts: action.payload
+      }
+    case C.SET_RANDOM_FONT_CYCLE:
+      return {
+        ...state,
+        randomFontPoolKey: action.payload.poolKey,
+        remainingRandomFontFamilies: action.payload.remainingFontFamilies
       }
     case C.SET_CURRENTLY_VIEWED_FONTS:
       return {

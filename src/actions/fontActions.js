@@ -44,6 +44,16 @@ export const setRandomFonts = randomFonts => dispatch => {
   });
 }
 
+export const setRandomFontCycle = ({ poolKey, remainingFontFamilies }) => dispatch => {
+  dispatch({
+    type: C.SET_RANDOM_FONT_CYCLE,
+    payload: {
+      poolKey,
+      remainingFontFamilies
+    }
+  });
+}
+
 export const setCurrentlyViewedFonts = fonts => dispatch => {
   dispatch({
     type: C.SET_CURRENTLY_VIEWED_FONTS,

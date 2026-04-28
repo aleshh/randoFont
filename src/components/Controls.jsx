@@ -14,11 +14,13 @@ import {
   setFontCount,
   fetchFonts,
   setRandomFonts,
+  setRandomFontCycle,
   setCurrentlyViewedFonts,
   invertCategories,
   setSubsetWanted
 } from '../actions/fontActions';
 import { getEligibleFonts } from '../utils/fontFilters';
+import { getNextRandomFonts } from '../utils/randomFontCycle';
 
 const styles = theme => ({
   root: {
@@ -122,7 +124,9 @@ class Controls extends Component {
       categoriesWanted,
       fontCount,
       allFonts,
-      subsetWanted
+      subsetWanted,
+      randomFontPoolKey,
+      remainingRandomFontFamilies
     } = this.props;
     const eligibleFonts = getEligibleFonts({
       allFonts,
@@ -133,24 +137,19 @@ class Controls extends Component {
 
     if (eligibleFonts.length === 0) return;
 
-    const maxCount = fontCount === 'all' ? eligibleFonts.length : fontCount;
-    const fontQty = Math.min(eligibleFonts.length, maxCount);
-
-    // Use Fisher–Yates shuffle, but only for as many elements as we need
-    for (let i = eligibleFonts.length;
-         i > (eligibleFonts.length - fontQty);
-         i--) {
-      const r = Math.floor(Math.random() * (eligibleFonts.length - 1));
-      const current = eligibleFonts[i - 1];
-
-      eligibleFonts[i - 1] = eligibleFonts[r];
-      eligibleFonts[r] = current;
-    }
-
-    const randomFonts = eligibleFonts.splice(-fontQty);
-
+    const {
+      poolKey,
+      remainingFontFamilies,
+      randomFonts
+    } = getNextRandomFonts({
+      eligibleFonts,
+      fontCount,
+      poolKey: randomFontPoolKey,
+      remainingFontFamilies: remainingRandomFontFamilies
+    });
 
     this.props.setRandomFonts(randomFonts);
+    this.props.setRandomFontCycle({ poolKey, remainingFontFamilies });
     this.props.setCurrentlyViewedFonts(randomFonts);
   }
 
@@ -273,7 +272,9 @@ Controls.propTypes = {
   setRandomFonts: PropTypes.func.isRequired,
   setCurrentlyViewedFonts: PropTypes.func.isRequired,
   invertCategories: PropTypes.func.isRequired,
-  setSubsetWanted: PropTypes.func.isRequired
+  setSubsetWanted: PropTypes.func.isRequired,
+  randomFontPoolKey: PropTypes.string.isRequired,
+  remainingRandomFontFamilies: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -282,7 +283,9 @@ const mapStateToProps = state => ({
   favoriteFonts: state.fonts.favoriteFonts,
   categoriesWanted: state.fonts.categoriesWanted,
   fontCount: state.fonts.fontCount,
-  subsetWanted: state.fonts.subsetWanted
+  subsetWanted: state.fonts.subsetWanted,
+  randomFontPoolKey: state.fonts.randomFontPoolKey,
+  remainingRandomFontFamilies: state.fonts.remainingRandomFontFamilies
 })
 
 export default withStyles(styles)(connect(
@@ -292,6 +295,7 @@ export default withStyles(styles)(connect(
     toggleCategoryWanted,
     fetchFonts,
     setRandomFonts,
+    setRandomFontCycle,
     setCurrentlyViewedFonts,
     invertCategories,
     setSubsetWanted
