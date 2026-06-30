@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
-import { withStyles } from '@material-ui/styles'
-import {
-  AppBar, Toolbar, FormControl, Select, MenuItem, Button
-} from '@material-ui/core';
+import { RefreshCw } from 'lucide-react';
 
 import CheckboxInput from './CheckboxInput';
 
@@ -21,77 +17,6 @@ import {
 } from '../actions/fontActions';
 import { getEligibleFonts } from '../utils/fontFilters';
 import { getNextRandomFonts } from '../utils/randomFontCycle';
-
-const styles = theme => ({
-  root: {
-    top: 64,
-    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2)',
-    borderTop: '1px solid gray',
-    [theme.breakpoints.down('xs')]: {
-      top: 56,
-    },
-  },
-  toolbar: {
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    gap: theme.spacing(0.5, 1.5),
-    minHeight: 56,
-    paddingTop: theme.spacing(0.75),
-    paddingBottom: theme.spacing(0.75),
-    [theme.breakpoints.down('xs')]: {
-      gap: theme.spacing(0.25, 0.75),
-      minHeight: 'auto',
-      paddingLeft: theme.spacing(1),
-      paddingRight: theme.spacing(1),
-    },
-  },
-  selectControl: {
-    minWidth: 58,
-    [theme.breakpoints.down('xs')]: {
-      minWidth: 48,
-    },
-  },
-  formElement: {
-    marginRight: 18,
-    whiteSpace: 'nowrap',
-    [theme.breakpoints.down('sm')]: {
-      marginRight: 8,
-      fontSize: 13,
-      '& .MuiFormControlLabel-label': {
-        fontSize: 13,
-      }
-    },
-    [theme.breakpoints.down('xs')]: {
-      fontSize: 12,
-      marginRight: 2,
-      '& .MuiCheckbox-root': {
-        padding: 4,
-      },
-      '& .MuiFormControlLabel-label': {
-        fontSize: 11,
-      }
-    },
-  },
-  qty: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 13,
-      '& .MuiFormControlLabel-label': {
-        fontSize: 13,
-      }
-    },
-    [theme.breakpoints.down('xs')]: {
-      fontSize: 12,
-    },
-  },
-  reloadButton: {
-    marginLeft: 'auto',
-    [theme.breakpoints.down('xs')]: {
-      minWidth: 0,
-      padding: theme.spacing(0.5, 1),
-      fontSize: 11,
-    },
-  },
-});
 
 class Controls extends Component {
 
@@ -194,41 +119,37 @@ class Controls extends Component {
 
     return (
       <React.Fragment>
-        <AppBar position="sticky" color="primary" className={this.props.classes.root}>
-          <Toolbar className={this.props.classes.toolbar}>
-            <FormControl variant="standard" className={this.props.classes.selectControl}>
-              <Select
-                className={this.props.classes.qty}
+        <div className="controls-bar">
+          <div className="controls-toolbar">
+            <label className="control-select-group">
+              <select
+                className="control-select"
                 value={fontCount}
                 onChange={setFontCount}
-                inputProps={{
-                  name: 'quantity',
-                  id: 'font-quantity'
-                }}
+                name="quantity"
+                id="font-quantity"
               >
                 { quantityOptions.map(option => (
-                  <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                  <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
-              </Select>
-            </FormControl>
-            <label className={this.props.classes.formElement}>&nbsp;Qty.</label>
+              </select>
+              <span>Qty.</span>
+            </label>
 
-            <FormControl variant="standard" className={this.props.classes.selectControl}>
-              <Select
-                className={this.props.classes.qty}
+            <label className="control-select-group control-select-group-wide">
+              <select
+                className="control-select"
                 value={subsetWanted}
                 onChange={setSubsetWanted}
-                inputProps={{
-                  name: 'subset',
-                  id: 'font-subset'
-                }}
+                name="subset"
+                id="font-subset"
               >
                 { subsetOptions.map(option => (
-                  <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                  <option key={option.value} value={option.value}>{option.label}</option>
                 ))}
-              </Select>
-            </FormControl>
-            <label className={this.props.classes.formElement}>&nbsp;Alphabet</label>
+              </select>
+              <span>Alphabet</span>
+            </label>
 
             {categories.map(
               category => (
@@ -238,20 +159,20 @@ class Controls extends Component {
                   checked={categoriesWanted.includes(category)}
                   toggleCategoryWanted={toggleCategoryWanted}
                   invertCategories={invertCategories}
-                  className={this.props.classes.formElement}
+                  className="control-checkbox"
                 />
               )
             )}
-            <Button
-              variant="contained"
-              color="secondary"
+            <button
+              type="button"
               onClick={this.randomizeFonts}
-              className={this.props.classes.reloadButton}
+              className="reload-button"
             >
+              <RefreshCw size={16} aria-hidden="true" />
               Reload
-            </Button>
-          </Toolbar>
-        </AppBar>
+            </button>
+          </div>
+        </div>
       </React.Fragment>
     )
   }
@@ -288,7 +209,7 @@ const mapStateToProps = state => ({
   remainingRandomFontFamilies: state.fonts.remainingRandomFontFamilies
 })
 
-export default withStyles(styles)(connect(
+export default connect(
   mapStateToProps,
   {
     setFontCount,
@@ -300,4 +221,4 @@ export default withStyles(styles)(connect(
     invertCategories,
     setSubsetWanted
   }
-)(Controls));
+)(Controls);

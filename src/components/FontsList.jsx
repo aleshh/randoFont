@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import WebFont from 'webfontloader';
 
-import Container from '@material-ui/core/Container';
-
 import { setCurrentlyViewedFonts } from '../actions/fontActions';
 import Font from './Font';
 
@@ -64,7 +62,7 @@ class FontsList extends Component {
     }
 
     return (
-      <Container maxWidth="lg" disableGutters>
+      <div className="page-container font-list">
         {fonts.length === 0 ?
           noFavorites :
           fonts.map(
@@ -75,7 +73,7 @@ class FontsList extends Component {
               favorite={favoriteFonts.includes(font)}
             />)
         )}
-      </Container>
+      </div>
     )
   }
 }

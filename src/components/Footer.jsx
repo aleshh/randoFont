@@ -1,18 +1,11 @@
 import React from 'react';
-import { Link } from '@material-ui/core'
-import { LocalPizza } from '@material-ui/icons';
-
-const iconStyle = {
-  position: 'relative',
-  top: 4,
-  fontSize: 16,
-}
+import { Pizza } from 'lucide-react';
 
 function Footer() {
   return (
-    <p style={{ textAlign: 'center', marginTop: -6, marginBottom: 10 }}>
-      Made with <LocalPizza style={ iconStyle } /> by <Link color="secondary" href="https://alesh.com/">Alesh</Link>, 2019–26. <Link color="secondary" href="https://github.com/aleshh/randoFont">GitHub</Link>.
-    </p>
+    <footer className="site-footer">
+      Made with <Pizza className="footer-icon" size={16} aria-hidden="true" /> by <a href="https://alesh.com/">Alesh</a>, 2019-26. <a href="https://github.com/aleshh/randoFont">GitHub</a>.
+    </footer>
   );
 }
 

@@ -2,27 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
-import { makeStyles } from '@material-ui/styles';
-import Container from '@material-ui/core/Container';
-
 import Controls from './Controls';
 import FontsList from './FontsList';
 import { getEligibleFonts } from '../utils/fontFilters';
 
-const useStyles = makeStyles(theme => ({
-  matchCount: {
-    margin: '16px 25px 12px',
-    fontSize: '0.9rem',
-    fontWeight: 600,
-    color: '#333',
-    [theme.breakpoints.down('xs')]: {
-      margin: '14px 16px 10px',
-    },
-  }
-}));
-
 const RandomFonts = (props) => {
-  const classes = useStyles();
   const { randomFonts, eligibleFontCount, allFontsLoaded } = props;
   const matchText = allFontsLoaded
     ? `Found ${eligibleFontCount} matching ${eligibleFontCount === 1 ? 'font' : 'fonts'}`
@@ -37,11 +21,11 @@ const RandomFonts = (props) => {
   return (
     <React.Fragment>
     <Controls/>
-      <Container maxWidth="lg">
-        <div className={classes.matchCount}>
+      <div className="page-container">
+        <div className="match-count">
           {matchText}
         </div>
-      </Container>
+      </div>
       { randomFonts.length === 0 ?
           noFonts :
           <FontsList fonts={randomFonts} />
