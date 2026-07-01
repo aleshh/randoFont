@@ -278,7 +278,7 @@ input {
 }
 
 .match-count {
-  margin: 18px 0 12px;
+  margin: 18px 0 0;
   color: var(--muted);
   font-size: 0.9rem;
   font-weight: 800;
@@ -448,7 +448,7 @@ input {
   }
 
   .match-count {
-    margin: 14px 0 10px;
+    margin: 14px 0 0;
   }
 
   .font-card {
