@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 
-import Controls from './Controls';
 import FontsList from './FontsList';
 import { getEligibleFonts } from '../utils/fontFilters';
 
@@ -20,7 +19,6 @@ const RandomFonts = (props) => {
 
   return (
     <React.Fragment>
-    <Controls/>
       <div className="page-container">
         <div className="match-count">
           {matchText}

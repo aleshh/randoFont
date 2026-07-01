@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { RefreshCw } from 'lucide-react';
+import { ChevronDown, RefreshCw } from 'lucide-react';
 
 import CheckboxInput from './CheckboxInput';
 
@@ -19,6 +19,13 @@ import { getEligibleFonts } from '../utils/fontFilters';
 import { getNextRandomFonts } from '../utils/randomFontCycle';
 
 class Controls extends Component {
+  state = {
+    categoriesOpen: false
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.closeCategories);
+  }
 
   componentDidMount() {
     if (this.props.allFonts.length === 0) {
@@ -42,6 +49,29 @@ class Controls extends Component {
     if (fontsLoaded || selectionChanged || fontsCleared) {
       this.randomizeFonts();
     }
+  }
+
+  closeCategories = () => {
+    this.setState({ categoriesOpen: false });
+    document.removeEventListener('click', this.closeCategories);
+  }
+
+  toggleCategories = event => {
+    event.stopPropagation();
+    this.setState(
+      state => ({ categoriesOpen: !state.categoriesOpen }),
+      () => {
+        if (this.state.categoriesOpen) {
+          document.addEventListener('click', this.closeCategories);
+        } else {
+          document.removeEventListener('click', this.closeCategories);
+        }
+      }
+    );
+  }
+
+  keepCategoriesOpen = event => {
+    event.stopPropagation();
   }
 
   randomizeFonts = () => {
@@ -116,64 +146,82 @@ class Controls extends Component {
       { label: 'Korean', value: 'korean' },
       { label: 'Japanese', value: 'japanese' }
     ];
+    const selectedCategoryCount = categoriesWanted.length;
+    const categoryLabel = selectedCategoryCount === categories.length
+      ? 'All styles'
+      : `${selectedCategoryCount} styles`;
 
     return (
-      <React.Fragment>
-        <div className="controls-bar">
-          <div className="controls-toolbar">
-            <label className="control-select-group">
-              <select
-                className="control-select"
-                value={fontCount}
-                onChange={setFontCount}
-                name="quantity"
-                id="font-quantity"
-              >
-                { quantityOptions.map(option => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-              </select>
-              <span>Qty.</span>
-            </label>
+      <div className="controls-toolbar">
+        <label className="control-select-group">
+          <select
+            className="control-select"
+            value={fontCount}
+            onChange={setFontCount}
+            name="quantity"
+            id="font-quantity"
+          >
+            { quantityOptions.map(option => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+          <span>Qty.</span>
+        </label>
 
-            <label className="control-select-group control-select-group-wide">
-              <select
-                className="control-select"
-                value={subsetWanted}
-                onChange={setSubsetWanted}
-                name="subset"
-                id="font-subset"
-              >
-                { subsetOptions.map(option => (
-                  <option key={option.value} value={option.value}>{option.label}</option>
-                ))}
-              </select>
-              <span>Alphabet</span>
-            </label>
+        <label className="control-select-group control-select-group-wide">
+          <select
+            className="control-select"
+            value={subsetWanted}
+            onChange={setSubsetWanted}
+            name="subset"
+            id="font-subset"
+          >
+            { subsetOptions.map(option => (
+              <option key={option.value} value={option.value}>{option.label}</option>
+            ))}
+          </select>
+          <span>Alphabet</span>
+        </label>
 
-            {categories.map(
-              category => (
-                <CheckboxInput
-                  key={category}
-                  name={category}
-                  checked={categoriesWanted.includes(category)}
-                  toggleCategoryWanted={toggleCategoryWanted}
-                  invertCategories={invertCategories}
-                  className="control-checkbox"
-                />
-              )
-            )}
-            <button
-              type="button"
-              onClick={this.randomizeFonts}
-              className="reload-button"
-            >
-              <RefreshCw size={16} aria-hidden="true" />
-              Reload
-            </button>
-          </div>
+        <div className="category-menu" onClick={this.keepCategoriesOpen}>
+          <button
+            type="button"
+            className="category-menu-button"
+            onClick={this.toggleCategories}
+            aria-haspopup="true"
+            aria-expanded={this.state.categoriesOpen}
+          >
+            {categoryLabel}
+            <ChevronDown size={15} aria-hidden="true" />
+          </button>
+          {this.state.categoriesOpen && (
+            <div className="category-menu-panel">
+              {categories.map(
+                category => (
+                  <CheckboxInput
+                    key={category}
+                    name={category}
+                    checked={categoriesWanted.includes(category)}
+                    toggleCategoryWanted={toggleCategoryWanted}
+                    invertCategories={invertCategories}
+                    className="category-menu-option"
+                  />
+                )
+              )}
+            </div>
+          )}
         </div>
-      </React.Fragment>
+        <button
+          type="button"
+          onClick={this.randomizeFonts}
+          className="reload-button"
+          title="Reload"
+          aria-label="Reload fonts"
+        >
+          <RefreshCw size={16} aria-hidden="true" />
+          <span className="reload-label">Reload</span>
+        </button>
+      </div>
     )
   }
 }
