@@ -61,14 +61,6 @@ export const setCurrentlyViewedFonts = fonts => dispatch => {
   });
 }
 
-export const invertCategories = e => dispatch => {
-  const fontToIgnore = e.target.name;
-  dispatch({
-    type: C.INVERT_CATEGORIES,
-    payload: fontToIgnore
-  });
-}
-
 export const toggleCategoryWanted = e => dispatch => {
   const category = e.target.name,
         checked = e.target.checked;
@@ -84,6 +76,13 @@ export const toggleCategoryWanted = e => dispatch => {
       payload: category
     });
   }
+}
+
+export const setCategoriesWanted = categories => dispatch => {
+  dispatch({
+    type: C.SET_CATEGORIES,
+    payload: categories
+  });
 }
 
 export const setFontCount = fontCount => dispatch => {

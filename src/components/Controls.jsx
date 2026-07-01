@@ -6,25 +6,27 @@ import { ChevronDown, RefreshCw } from 'lucide-react';
 import CheckboxInput from './CheckboxInput';
 
 import {
-  toggleCategoryWanted,
+  setCategoriesWanted,
   setFontCount,
   fetchFonts,
   setRandomFonts,
   setRandomFontCycle,
   setCurrentlyViewedFonts,
-  invertCategories,
   setSubsetWanted
 } from '../actions/fontActions';
 import { getEligibleFonts } from '../utils/fontFilters';
 import { getNextRandomFonts } from '../utils/randomFontCycle';
 
 class Controls extends Component {
+  categoryMenuRef = React.createRef();
+
   state = {
-    categoriesOpen: false
+    categoriesOpen: false,
+    draftCategoriesWanted: []
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.closeCategories);
+    document.removeEventListener('click', this.handleDocumentClick);
   }
 
   componentDidMount() {
@@ -52,26 +54,55 @@ class Controls extends Component {
   }
 
   closeCategories = () => {
-    this.setState({ categoriesOpen: false });
-    document.removeEventListener('click', this.closeCategories);
+    this.setState({
+      categoriesOpen: false,
+      draftCategoriesWanted: this.props.categoriesWanted
+    });
+    document.removeEventListener('click', this.handleDocumentClick);
+  }
+
+  handleDocumentClick = event => {
+    if (
+      this.categoryMenuRef.current
+      && this.categoryMenuRef.current.contains(event.target)
+    ) {
+      return;
+    }
+
+    this.closeCategories();
   }
 
   toggleCategories = event => {
-    event.stopPropagation();
     this.setState(
-      state => ({ categoriesOpen: !state.categoriesOpen }),
+      state => ({
+        categoriesOpen: !state.categoriesOpen,
+        draftCategoriesWanted: state.categoriesOpen
+          ? this.props.categoriesWanted
+          : this.props.categoriesWanted
+      }),
       () => {
         if (this.state.categoriesOpen) {
-          document.addEventListener('click', this.closeCategories);
+          document.addEventListener('click', this.handleDocumentClick);
         } else {
-          document.removeEventListener('click', this.closeCategories);
+          document.removeEventListener('click', this.handleDocumentClick);
         }
       }
     );
   }
 
-  keepCategoriesOpen = event => {
-    event.stopPropagation();
+  toggleDraftCategory = event => {
+    const { checked, name } = event.target;
+
+    this.setState(state => ({
+      draftCategoriesWanted: checked
+        ? [...state.draftCategoriesWanted, name]
+        : state.draftCategoriesWanted.filter(category => category !== name)
+    }));
+  }
+
+  applyCategories = () => {
+    this.props.setCategoriesWanted(this.state.draftCategoriesWanted);
+    this.closeCategories();
   }
 
   randomizeFonts = () => {
@@ -113,9 +144,7 @@ class Controls extends Component {
       fontCount,
       subsetWanted,
       categoriesWanted,
-      toggleCategoryWanted,
       setFontCount,
-      invertCategories,
       setSubsetWanted
     } = this.props;
     const categories = [
@@ -146,7 +175,10 @@ class Controls extends Component {
       { label: 'Korean', value: 'korean' },
       { label: 'Japanese', value: 'japanese' }
     ];
-    const selectedCategoryCount = categoriesWanted.length;
+    const activeCategories = this.state.categoriesOpen
+      ? this.state.draftCategoriesWanted
+      : categoriesWanted;
+    const selectedCategoryCount = activeCategories.length;
     const categoryLabel = selectedCategoryCount === categories.length
       ? 'All styles'
       : `${selectedCategoryCount} styles`;
@@ -183,7 +215,7 @@ class Controls extends Component {
           <span>Alphabet</span>
         </label>
 
-        <div className="category-menu" onClick={this.keepCategoriesOpen}>
+        <div className="category-menu" ref={this.categoryMenuRef}>
           <button
             type="button"
             className="category-menu-button"
@@ -201,13 +233,21 @@ class Controls extends Component {
                   <CheckboxInput
                     key={category}
                     name={category}
-                    checked={categoriesWanted.includes(category)}
-                    toggleCategoryWanted={toggleCategoryWanted}
-                    invertCategories={invertCategories}
+                    checked={this.state.draftCategoriesWanted.includes(category)}
+                    toggleCategoryWanted={this.toggleDraftCategory}
                     className="category-menu-option"
                   />
                 )
               )}
+              <div className="category-menu-actions">
+                <button
+                  type="button"
+                  className="category-apply-button"
+                  onClick={this.applyCategories}
+                >
+                  Apply
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -236,11 +276,10 @@ Controls.propTypes = {
   subsetWanted: PropTypes.string.isRequired,
   categoriesWanted: PropTypes.array.isRequired,
   fetchFonts: PropTypes.func.isRequired,
-  toggleCategoryWanted: PropTypes.func.isRequired,
+  setCategoriesWanted: PropTypes.func.isRequired,
   setFontCount: PropTypes.func.isRequired,
   setRandomFonts: PropTypes.func.isRequired,
   setCurrentlyViewedFonts: PropTypes.func.isRequired,
-  invertCategories: PropTypes.func.isRequired,
   setSubsetWanted: PropTypes.func.isRequired,
   randomFontPoolKey: PropTypes.string.isRequired,
   remainingRandomFontFamilies: PropTypes.array.isRequired
@@ -261,12 +300,11 @@ export default connect(
   mapStateToProps,
   {
     setFontCount,
-    toggleCategoryWanted,
+    setCategoriesWanted,
     fetchFonts,
     setRandomFonts,
     setRandomFontCycle,
     setCurrentlyViewedFonts,
-    invertCategories,
     setSubsetWanted
   }
 )(Controls);

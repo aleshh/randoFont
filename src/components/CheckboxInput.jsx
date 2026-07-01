@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-function CheckboxInput({ name, checked, invertCategories, toggleCategoryWanted, className }) {
+function CheckboxInput({ name, checked, toggleCategoryWanted, className }) {
 
   return (
     <label
       className={className}
-      onDoubleClick={invertCategories}
     >
       <input
         className="checkbox-input"
@@ -24,7 +23,6 @@ function CheckboxInput({ name, checked, invertCategories, toggleCategoryWanted, 
 CheckboxInput.propTypes = {
   name: PropTypes.string.isRequired,
   checked: PropTypes.bool.isRequired,
-  invertCategories: PropTypes.func.isRequired,
   toggleCategoryWanted: PropTypes.func.isRequired,
   className: PropTypes.string
 }

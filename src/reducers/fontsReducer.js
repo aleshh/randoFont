@@ -50,13 +50,10 @@ export default function(state = initialFontsState, action) {
           cat => cat !== action.payload
         )
       }
-    case C.INVERT_CATEGORIES:
-      // console.clear()
+    case C.SET_CATEGORIES:
       return {
         ...state,
-        categoriesWanted: initialFontsState.categoriesWanted.filter(cat => {
-          return state.categoriesWanted.indexOf(cat) === -1
-        })
+        categoriesWanted: action.payload
       }
     case C.SET_FONT_COUNT:
       return {
