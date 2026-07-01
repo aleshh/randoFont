@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ChevronDown, RefreshCw } from 'lucide-react';
+import { ChevronDown, Shuffle } from 'lucide-react';
 
 import CheckboxInput from './CheckboxInput';
 
@@ -255,11 +255,11 @@ class Controls extends Component {
           type="button"
           onClick={this.randomizeFonts}
           className="reload-button"
-          title="Reload"
-          aria-label="Reload fonts"
+          title="Shuffle"
+          aria-label="Shuffle fonts"
         >
-          <RefreshCw size={16} aria-hidden="true" />
-          <span className="reload-label">Reload</span>
+          <Shuffle size={16} aria-hidden="true" />
+          <span className="reload-label">Shuffle</span>
         </button>
       </div>
     )
