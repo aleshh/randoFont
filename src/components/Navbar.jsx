@@ -23,7 +23,7 @@ const Navbar = ({ favoriteCount }) => {
               <Home className="nav-icon" size={17} aria-hidden="true" />
               <span className="nav-label">Home</span>
             </NavLink>
-            <NavLink className="nav-link" activeClassName="nav-link-active" to="/favorites" title="Favorites" aria-label="Favorites">
+          <NavLink className="nav-link" activeClassName="nav-link-active" to="/favorites" title="Favorites" aria-label="Favorites">
               <Heart className="nav-icon" size={17} aria-hidden="true" />
               <span className="nav-label">Favorites</span>
               <NavbarFavCount/>

@@ -43,7 +43,7 @@ class FontsList extends Component {
   }
 
   render() {
-    const { sampleSentence, favoriteFonts, currentlyViewedFonts } = this.props;
+    const { className, sampleSentence, favoriteFonts, currentlyViewedFonts } = this.props;
 
     const fonts = currentlyViewedFonts;
 
@@ -62,7 +62,7 @@ class FontsList extends Component {
     }
 
     return (
-      <div className="page-container font-list">
+      <div className={`page-container font-list ${className || ''}`}>
         {fonts.length === 0 ?
           noFavorites :
           fonts.map(
@@ -81,7 +81,8 @@ class FontsList extends Component {
 FontsList.propTypes = {
   fonts: PropTypes.array.isRequired,
   favoriteFonts: PropTypes.array.isRequired,
-  sampleSentence: PropTypes.string.isRequired
+  sampleSentence: PropTypes.string.isRequired,
+  className: PropTypes.string
 }
 
 const mapStateToProps = state => ({
