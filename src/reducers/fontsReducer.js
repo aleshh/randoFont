@@ -12,6 +12,7 @@ export const initialFontsState = {
   ],
   subsetWanted: 'latin',
   sampleSentence: 'Pack my box with five dozen liquor jugs.',
+  sampleSentenceIsCustom: false,
   fontCount: 3
 }
 
@@ -59,6 +60,12 @@ export default function(state = initialFontsState, action) {
       return {
         ...state,
         fontCount: action.payload
+      }
+    case C.SET_SAMPLE_SENTENCE:
+      return {
+        ...state,
+        sampleSentence: action.payload,
+        sampleSentenceIsCustom: true
       }
     case C.SET_SUBSET:
       return {

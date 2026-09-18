@@ -8,7 +8,7 @@ import { toggleFavorite } from '../actions/fontActions';
 const Slash = () => <span className="font-detail-separator"> / </span>
 
 const Font = props => {
-  const { font, sampleSentence, favorite, toggleFavorite } = props;
+  const { font, sampleSentence, favorite, onSampleSentenceBlur, toggleFavorite } = props;
 
   return (
     <article className="font-card">
@@ -18,6 +18,7 @@ const Font = props => {
           style={{fontFamily: font.family}}
           contentEditable
           suppressContentEditableWarning
+          onBlur={onSampleSentenceBlur}
         >
           {sampleSentence}
         </h2>
@@ -58,6 +59,7 @@ Font.propTypes = {
   font: PropTypes.object.isRequired,
   sampleSentence: PropTypes.string.isRequired,
   favorite: PropTypes.bool.isRequired,
+  onSampleSentenceBlur: PropTypes.func.isRequired,
   toggleFavorite: PropTypes.func.isRequired
 }
 

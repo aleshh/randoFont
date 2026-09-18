@@ -93,6 +93,13 @@ export const setFontCount = fontCount => dispatch => {
   });
 }
 
+export const setSampleSentence = sampleSentence => dispatch => {
+  dispatch({
+    type: C.SET_SAMPLE_SENTENCE,
+    payload: sampleSentence
+  });
+}
+
 export const setSubsetWanted = subset => dispatch => {
   dispatch({
     type: C.SET_SUBSET,

@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import WebFont from 'webfontloader';
 
-import { setCurrentlyViewedFonts } from '../actions/fontActions';
+import { setCurrentlyViewedFonts, setSampleSentence } from '../actions/fontActions';
 import Font from './Font';
 
-const getSampleSentence = (subsetWanted, fallbackSentence) => {
+const getSampleSentence = (subsetWanted, fallbackSentence, isCustomSentence) => {
   const subsetSamples = {
     latin: 'Pack my box with five dozen liquor jugs.',
     'latin-ext': 'Pchnąć w tę łódź jeża lub ośm skrzyń fig.',
@@ -24,7 +24,7 @@ const getSampleSentence = (subsetWanted, fallbackSentence) => {
     japanese: 'いろはにほへと ちりぬるを'
   };
 
-  if (!subsetWanted || subsetWanted === 'any') {
+  if (isCustomSentence || !subsetWanted || subsetWanted === 'any') {
     return fallbackSentence;
   }
 
@@ -41,6 +41,10 @@ class FontsList extends Component {
     // currentlyViewedFonts, so it can be re-favorited if it was a mistake
     this.props.setCurrentlyViewedFonts(this.props.fonts);
   }
+
+  handleSampleSentenceBlur = event => {
+    this.props.setSampleSentence(event.currentTarget.textContent);
+  };
 
   render() {
     const { className, sampleSentence, favoriteFonts, currentlyViewedFonts } = this.props;
@@ -71,6 +75,7 @@ class FontsList extends Component {
               font={font}
               sampleSentence={sampleSentence}
               favorite={favoriteFonts.includes(font)}
+              onSampleSentenceBlur={this.handleSampleSentenceBlur}
             />)
         )}
       </div>
@@ -82,6 +87,7 @@ FontsList.propTypes = {
   fonts: PropTypes.array.isRequired,
   favoriteFonts: PropTypes.array.isRequired,
   sampleSentence: PropTypes.string.isRequired,
+  setSampleSentence: PropTypes.func.isRequired,
   className: PropTypes.string
 }
 
@@ -90,8 +96,9 @@ const mapStateToProps = state => ({
   currentlyViewedFonts: state.fonts.currentlyViewedFonts,
   sampleSentence: getSampleSentence(
     state.fonts.subsetWanted,
-    state.fonts.sampleSentence
+    state.fonts.sampleSentence,
+    state.fonts.sampleSentenceIsCustom
   )
 });
 
-export default connect(mapStateToProps, { setCurrentlyViewedFonts })(FontsList);
+export default connect(mapStateToProps, { setCurrentlyViewedFonts, setSampleSentence })(FontsList);
